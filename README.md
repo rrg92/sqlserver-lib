@@ -1,4 +1,4 @@
-﻿# SQL Server Kit
+﻿# SQL Server Lib
 
 Olá! Eu sou DBA SQL Server há mais de 10 anos e se tem uma coisa que me ajudou muito nessa jornada foi ter sempre um script pronto para me ajudar a investigar problemas!  
 Sem isso, seria muito mais difícil responder rápido a muitos incidentes, salas de crises e qualquer outro problema que tive com SQL Server.  
@@ -20,3 +20,8 @@ Vou fazer isso até que tudo esteja sincronizado aqui, e após isso, é só mant
 E, o mais legal é que você pode me ajudar a manter isso também: Se tiver alguma correção, ideia, etc., fique a vontade para submeter um Pull Request, que eu reviso.
 
 [linkedin]: https://www.linkedin.com/in/rodrigoribeirogomes/
+
+
+# Dicas
+
+Eu vou aproveitar este repositório e deixar aqui uma série de links úteis e dicas de ferramentas (fazer algo parecido com as `awersome list do github`).  
