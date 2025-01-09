@@ -22,6 +22,37 @@ E, o mais legal é que você pode me ajudar a manter isso também: Se tiver algu
 [linkedin]: https://www.linkedin.com/in/rodrigoribeirogomes/
 
 
-# Dicas
+# Dicas (Awesome SQL Server)
 
-Eu vou aproveitar este repositório e deixar aqui uma série de links úteis e dicas de ferramentas (fazer algo parecido com as `awersome list do github`).  
+Eu vou aproveitar este repositório e deixar aqui uma série de links de referência e dicas de ferramentas (fazer algo parecido com as `awersome list do github`).  
+
+> [!NOTE]
+> Você pode submeter um PR alterando com alterações sugeridas nessa lista  
+> Irei revisar cada modificação sugerida
+
+
+## Ferramentas
+
+- [SQL Server Management Studio](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)(SSMS)
+- [SQL Server Developer/Evaluation](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+
+
+## Conteúdo
+
+- [Blog Oficial SQL Server](https://www.microsoft.com/en-us/sql-server/blog/)
+- [Hub de Blogs pt-BR](https://mssqlserver.com.br/)
+- [Dirceu Resende](https://dirceuresende.com.br)
+- [The SQL Times](https://thesqltimes.com)
+- [Fabrício Lima](https://www.fabriciolima.net/blog/)
+- [Luiz Lima](https://luizlima.net/luiz-vitor-foto-blog/)
+- [Power Tuning](https://powertuning.com.br/blog/)
+- [SQL Server Version List](https://sqlserverbuilds.blogspot.com/)
+- [Porto SQL](https://portosql.wordpress.com/)
+- [Diego Nogare](https://diegonogare.net/)
+- [Reginaldo Silva](https://blogdojamal.wordpress.com/)
+- [Simple Talk](https://www.red-gate.com/simple-talk/)
+- [SQL Server Execution Plan Reference](https://sqlserverfast.com/epr/)
+- [Éder Lelis](https://ederlelis.com.br/blog/)
+- [Edvaldo Castro](https://edvaldocastro.com/)
+- [Gustavo Maia](https://gustavomaiaaguiar.wordpress.com/)
+- [Blog do Luti](https://luticm.blogspot.com/)
