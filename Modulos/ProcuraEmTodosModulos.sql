@@ -19,7 +19,7 @@
 
 DECLARE
 	 @procura nvarchar(max)
-SET  @procura = 'TRAINEE' 
+SET  @procura = 'Texto da busca' 
 
 IF OBJECT_ID('tempdb..#resultados') IS NOT NULL
 	DROP TABLE #Resultados
