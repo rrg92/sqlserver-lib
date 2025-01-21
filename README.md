@@ -1,4 +1,5 @@
-﻿# SQL Server Lib
+﻿![Progresso](https://progress-bar.xyz/11/?width=200&title=54%2F490%20scripts)
+# SQL Server Lib
 
 Olá! Eu sou DBA SQL Server há mais de 10 anos e se tem uma coisa que me ajudou muito nessa jornada foi ter sempre um script pronto para me ajudar a investigar problemas!  
 Sem isso, seria muito mais difícil responder rápido a muitos incidentes, salas de crises e qualquer outro problema que tive com SQL Server.  
