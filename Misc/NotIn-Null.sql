@@ -16,8 +16,8 @@ create table #vendas (
 	,ip varchar(100)
 )
 
-drop table if exists #blacklist; 
-create table #blacklist (
+drop table if exists #regras; 
+create table #regras (
 	 Hora int 
 	,ip varchar(100)
 	,email varchar(100)
@@ -33,7 +33,7 @@ values
 	,('20240102 15:39',150,'1.1.1.1')
 	,('20240102 15:39',3000,'2.2.2.2')
 
-insert into #blacklist(Hora,ip,email,dns,username)
+insert into #regras(Hora,ip,email,dns,username)
 values 
 	(15,'1.1.1.1',null,null,null)
 	,(16,null,null,'*.test',null)
@@ -45,7 +45,7 @@ from
 	#vendas v
 where 
 	v.ip not in (
-		select b.ip from #blacklist b
+		select b.ip from #regras b
 		where b.Hora = datepart(hh,DataVenda)
 	)
 group by
@@ -59,7 +59,7 @@ from
 	#vendas v
 where 
 	v.ip not in (
-		select b.ip from #blacklist b
+		select b.ip from #regras b
 		where b.Hora = datepart(hh,DataVenda)
 		and b.ip is not null
 	)
@@ -74,7 +74,7 @@ from
 	#vendas v
 where 
 	v.ip not in (
-		select isnull(b.ip,'') from #blacklist b
+		select isnull(b.ip,'') from #regras b
 		where b.Hora = datepart(hh,DataVenda)
 	)
 group by
@@ -88,7 +88,7 @@ from
 	#vendas v
 where 
 	not exists (
-		select * from #blacklist b
+		select * from #regras b
 		where b.Hora = datepart(hh,DataVenda)
 		and v.ip = b.ip
 	)
@@ -106,7 +106,7 @@ from
 	#vendas v
 where 
 	v.ip not in (
-		select b.ip from #blacklist b
+		select b.ip from #regras b
 		where b.Hora = datepart(hh,DataVenda)
 	)
 group by
