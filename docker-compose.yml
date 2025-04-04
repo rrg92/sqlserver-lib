@@ -1,0 +1,13 @@
+services:
+    powershai-publish-test:
+        build: .
+        environment:
+            HF_API_TOKEN: $TEST_HF_API_TOKEN
+            SQL_SERVER: $SQL_SERVER
+            SQL_DB: $SQL_DB
+            SQL_USER: $SQL_USER
+            SQL_PASS: $SQL_PASS
+        command: pwsh -NonInteractive -File ./SqlLibEmbeddings/start-embedding.ps1
+
+        
+        

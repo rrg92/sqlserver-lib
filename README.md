@@ -1,6 +1,13 @@
 ﻿![Progresso](https://progress-bar.xyz/20/?width=200&title=100%2F493%20scripts)
 # SQL Server Lib
 
+> [!TIP]
+> **NOVIDADE**: Pesquise o melhor script para sua necessidade com IA aqui: https://huggingface.co/spaces/rrg92/sqlserver-lib-assistant
+> Basicamente esse GitHub está indexado para que uma IA possa te ajudar a achar o que precisa!
+> É só descrever o que precisa!
+> Lembrando que isso é uma v1, então os resultados podem não ser precisos, e depende se o repo tem um script que tem relação com o assunto!
+> Em breve faço um post explicando como tudo isso funciona!
+
 Olá! Eu sou DBA SQL Server há mais de 10 anos e se tem uma coisa que me ajudou muito nessa jornada foi ter sempre um script pronto para me ajudar a investigar problemas!  
 Sem isso, seria muito mais difícil responder rápido a muitos incidentes, salas de crises e qualquer outro problema que tive com SQL Server.  
 
@@ -41,6 +48,7 @@ Eu vou aproveitar este repositório e deixar aqui uma série de links de referê
 ## Conteúdo
 
 - [Blog Oficial SQL Server](https://www.microsoft.com/en-us/sql-server/blog/)
+- [Blog Oficial DEV Azure SQL](https://devblogs.microsoft.com/azure-sql/)
 - [Hub de Blogs pt-BR](https://mssqlserver.com.br/)
 - [Dirceu Resende](https://dirceuresende.com.br)
 - [The SQL Times](https://thesqltimes.com)

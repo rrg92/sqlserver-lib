@@ -1,0 +1,21 @@
+name: embed
+on: 
+    push:
+        tags:
+            - embed-*
+
+jobs:
+  embed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: embed
+        shell: pwsh
+        env:
+          HF_API_TOKEN: ${{ secrets.HF_API_TOKEN }}
+          SQL_SERVER: ${{ secrets.SQL_SERVER }}
+          SQL_DB: ${{ secrets.SQL_DB }}
+          SQL_USER: ${{ secrets.SQL_USER }}
+          SQL_PASS: ${{ secrets.SQL_PASS }}
+        run: ./SqlLibEmbeddings/start-embedding.ps1
