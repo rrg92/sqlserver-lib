@@ -2,8 +2,15 @@
 	Prepara para o ambiente para os embeddings do git!
 #>
 
-if(!(Get-Module powershai)){
-	install-module powershai;
+"powershai" | %{
+	$ModName = $_
+	
+	if(-not(Get-Module -ListAvailable $ModName)){
+		write-host "Instaling $ModName module";
+		$m = Install-Module $ModName -force -PassThru
+		write-host "	Installed: $($m.name) $($m.Version)"
+	}	
+	
 }
 
 
