@@ -4,7 +4,10 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$Committed = @(git ls-files).count 
+$Committed = @(git ls-files | ?{
+		$it = Get-Item $_ -EA SilentlyContinue;
+		$it.name -like '*.sql'
+	}).count 
 $TotalFiles = @(gci -rec *.sql).count
 
 
