@@ -1,0 +1,52 @@
+-- Uma query sinistra no tempo de compialção!
+exec sp_executesql N'
+	select top 1
+		t.id
+	from
+		tab1 t
+		join
+		tab1 tt on tt.c < t.c
+		join tab1 tt10 on tt10.id  = t.id
+		join tab1 t20 on left(tt10.c,2) != left(tt.id,3) join tab1 t40 on left(tt10.c,2) != left(tt.id,3) join tab1 t60 on left(tt10.c,2) != left(tt.id,3) join tab1 t80 on left(tt10.c,2) != left(tt.id,3) join tab1 t100 on left(tt10.c,2) != left(tt.id,3) join tab1 t120 on left(tt10.c,2) != left(tt.id,3) join tab1 t140 on left(tt10.c,2) != left(tt.id,3) join tab1 t160 on left(tt10.c,2) != left(tt.id,3) join tab1 t180 on left(tt10.c,2) != left(tt.id,3) join tab1 t200 on left(tt10.c,2) != left(tt.id,3)
+		join tab1 t181 on left(tt10.c,2) != left(tt.id,3) join tab1 t161 on left(tt10.c,2) != left(tt.id,3) join tab1 t141 on left(tt10.c,2) != left(tt.id,3) join tab1 t121 on left(tt10.c,2) != left(tt.id,3) join tab1 t101 on left(tt10.c,2) != left(tt.id,3) join tab1 t81 on left(tt10.c,2) != left(tt.id,3) join tab1 t61 on left(tt10.c,2) != left(tt.id,3) join tab1 t41 on left(tt10.c,2) != left(tt.id,3) join tab1 t21 on left(tt10.c,2) != left(tt.id,3) join tab1 t1 on left(tt10.c,2) != left(tt.id,3)
+		join tab1 t2 on left(tt10.c,2) != left(tt.id,3) join tab1 t22 on left(tt10.c,2) != left(tt.id,3) join tab1 t42 on left(tt10.c,2) != left(tt.id,3) join tab1 t62 on left(tt10.c,2) != left(tt.id,3) join tab1 t82 on left(tt10.c,2) != left(tt.id,3) join tab1 t102 on left(tt10.c,2) != left(tt.id,3) join tab1 t122 on left(tt10.c,2) != left(tt.id,3) join tab1 t142 on left(tt10.c,2) != left(tt.id,3) join tab1 t162 on left(tt10.c,2) != left(tt.id,3) join tab1 t182 on left(tt10.c,2) != left(tt.id,3)
+		join tab1 t183 on left(tt10.c,2) != left(tt.id,3) join tab1 t163 on left(tt10.c,2) != left(tt.id,3) join tab1 t143 on left(tt10.c,2) != left(tt.id,3) join tab1 t123 on left(tt10.c,2) != left(tt.id,3) join tab1 t103 on left(tt10.c,2) != left(tt.id,3) join tab1 t83 on left(tt10.c,2) != left(tt.id,3) join tab1 t63 on left(tt10.c,2) != left(tt.id,3) join tab1 t43 on left(tt10.c,2) != left(tt.id,3) join tab1 t23 on left(tt10.c,2) != left(tt.id,3) join tab1 t3 on left(tt10.c,2) != left(tt.id,3)
+		join tab1 t4 on left(tt10.c,2) != left(tt.id,3) join tab1 t24 on left(tt10.c,2) != left(tt.id,3) join tab1 t44 on left(tt10.c,2) != left(tt.id,3) join tab1 t64 on left(tt10.c,2) != left(tt.id,3) join tab1 t84 on left(tt10.c,2) != left(tt.id,3) join tab1 t104 on left(tt10.c,2) != left(tt.id,3) join tab1 t124 on left(tt10.c,2) != left(tt.id,3) join tab1 t144 on left(tt10.c,2) != left(tt.id,3) join tab1 t164 on left(tt10.c,2) != left(tt.id,3) join tab1 t184 on left(tt10.c,2) != left(tt.id,3)
+		join tab1 t185 on left(tt10.c,2) != left(tt.id,3) join tab1 t165 on left(tt10.c,2) != left(tt.id,3) join tab1 t145 on left(tt10.c,2) != left(tt.id,3) join tab1 t125 on left(tt10.c,2) != left(tt.id,3) join tab1 t105 on left(tt10.c,2) != left(tt.id,3) join tab1 t85 on left(tt10.c,2) != left(tt.id,3) join tab1 t65 on left(tt10.c,2) != left(tt.id,3) join tab1 t45 on left(tt10.c,2) != left(tt.id,3) join tab1 t25 on left(tt10.c,2) != left(tt.id,3) join tab1 t5 on left(tt10.c,2) != left(tt.id,3)
+		join tab1 t6 on left(tt10.c,2) != left(tt.id,3) join tab1 t26 on left(tt10.c,2) != left(tt.id,3) join tab1 t46 on left(tt10.c,2) != left(tt.id,3) join tab1 t66 on left(tt10.c,2) != left(tt.id,3) join tab1 t86 on left(tt10.c,2) != left(tt.id,3) join tab1 t106 on left(tt10.c,2) != left(tt.id,3) join tab1 t126 on left(tt10.c,2) != left(tt.id,3) join tab1 t146 on left(tt10.c,2) != left(tt.id,3) join tab1 t166 on left(tt10.c,2) != left(tt.id,3) join tab1 t186 on left(tt10.c,2) != left(tt.id,3)
+		join tab1 t187 on left(tt10.c,2) != left(tt.id,3) join tab1 t167 on left(tt10.c,2) != left(tt.id,3) join tab1 t147 on left(tt10.c,2) != left(tt.id,3) join tab1 t127 on left(tt10.c,2) != left(tt.id,3) join tab1 t107 on left(tt10.c,2) != left(tt.id,3) join tab1 t87 on left(tt10.c,2) != left(tt.id,3) join tab1 t67 on left(tt10.c,2) != left(tt.id,3) join tab1 t47 on left(tt10.c,2) != left(tt.id,3) join tab1 t27 on left(tt10.c,2) != left(tt.id,3) join tab1 t7 on left(tt10.c,2) != left(tt.id,3)
+		join tab1 t8 on left(tt10.c,2) != left(tt.id,3) join tab1 t28 on left(tt10.c,2) != left(tt.id,3) join tab1 t48 on left(tt10.c,2) != left(tt.id,3) join tab1 t68 on left(tt10.c,2) != left(tt.id,3) join tab1 t88 on left(tt10.c,2) != left(tt.id,3) join tab1 t108 on left(tt10.c,2) != left(tt.id,3) join tab1 t128 on left(tt10.c,2) != left(tt.id,3) join tab1 t148 on left(tt10.c,2) != left(tt.id,3) join tab1 t168 on left(tt10.c,2) != left(tt.id,3) join tab1 t188 on left(tt10.c,2) != left(tt.id,3)
+		join tab1 t189 on left(tt10.c,2) != left(tt.id,3) join tab1 t169 on left(tt10.c,2) != left(tt.id,3) join tab1 t149 on left(tt10.c,2) != left(tt.id,3) join tab1 t129 on left(tt10.c,2) != left(tt.id,3) join tab1 t109 on left(tt10.c,2) != left(tt.id,3) join tab1 t89 on left(tt10.c,2) != left(tt.id,3) join tab1 t69 on left(tt10.c,2) != left(tt.id,3) join tab1 t49 on left(tt10.c,2) != left(tt.id,3) join tab1 t29 on left(tt10.c,2) != left(tt.id,3) join tab1 t9 on left(tt10.c,2) != left(tt.id,3)
+		join tab1 t10 on left(tt10.c,2) != left(tt.id,3) join tab1 t30 on left(tt10.c,2) != left(tt.id,3) join tab1 t50 on left(tt10.c,2) != left(tt.id,3) join tab1 t70 on left(tt10.c,2) != left(tt.id,3) join tab1 t90 on left(tt10.c,2) != left(tt.id,3) join tab1 t110 on left(tt10.c,2) != left(tt.id,3) join tab1 t130 on left(tt10.c,2) != left(tt.id,3) join tab1 t150 on left(tt10.c,2) != left(tt.id,3) join tab1 t170 on left(tt10.c,2) != left(tt.id,3) join tab1 t190 on left(tt10.c,2) != left(tt.id,3)
+		join tab1 t191 on left(tt10.c,2) != left(tt.id,3) join tab1 t171 on left(tt10.c,2) != left(tt.id,3) join tab1 t151 on left(tt10.c,2) != left(tt.id,3) join tab1 t131 on left(tt10.c,2) != left(tt.id,3) join tab1 t111 on left(tt10.c,2) != left(tt.id,3) join tab1 t91 on left(tt10.c,2) != left(tt.id,3) join tab1 t71 on left(tt10.c,2) != left(tt.id,3) join tab1 t51 on left(tt10.c,2) != left(tt.id,3) join tab1 t31 on left(tt10.c,2) != left(tt.id,3) join tab1 t11 on left(tt10.c,2) != left(tt.id,3)
+		join tab1 t12 on left(tt10.c,2) != left(tt.id,3) join tab1 t32 on left(tt10.c,2) != left(tt.id,3) join tab1 t52 on left(tt10.c,2) != left(tt.id,3) join tab1 t72 on left(tt10.c,2) != left(tt.id,3) join tab1 t92 on left(tt10.c,2) != left(tt.id,3) join tab1 t112 on left(tt10.c,2) != left(tt.id,3) join tab1 t132 on left(tt10.c,2) != left(tt.id,3) join tab1 t152 on left(tt10.c,2) != left(tt.id,3) join tab1 t172 on left(tt10.c,2) != left(tt.id,3) join tab1 t192 on left(tt10.c,2) != left(tt.id,3)
+		join tab1 t193 on left(tt10.c,2) != left(tt.id,3) join tab1 t173 on left(tt10.c,2) != left(tt.id,3) join tab1 t153 on left(tt10.c,2) != left(tt.id,3) join tab1 t133 on left(tt10.c,2) != left(tt.id,3) join tab1 t113 on left(tt10.c,2) != left(tt.id,3) join tab1 t93 on left(tt10.c,2) != left(tt.id,3) join tab1 t73 on left(tt10.c,2) != left(tt.id,3) join tab1 t53 on left(tt10.c,2) != left(tt.id,3) join tab1 t33 on left(tt10.c,2) != left(tt.id,3) join tab1 t13 on left(tt10.c,2) != left(tt.id,3)
+		join tab1 t14 on left(tt10.c,2) != left(tt.id,3) join tab1 t34 on left(tt10.c,2) != left(tt.id,3) join tab1 t54 on left(tt10.c,2) != left(tt.id,3) join tab1 t74 on left(tt10.c,2) != left(tt.id,3) join tab1 t94 on left(tt10.c,2) != left(tt.id,3) join tab1 t114 on left(tt10.c,2) != left(tt.id,3) join tab1 t134 on left(tt10.c,2) != left(tt.id,3) join tab1 t154 on left(tt10.c,2) != left(tt.id,3) join tab1 t174 on left(tt10.c,2) != left(tt.id,3) join tab1 t194 on left(tt10.c,2) != left(tt.id,3)
+		join tab1 t195 on left(tt10.c,2) != left(tt.id,3) join tab1 t175 on left(tt10.c,2) != left(tt.id,3) join tab1 t155 on left(tt10.c,2) != left(tt.id,3) join tab1 t135 on left(tt10.c,2) != left(tt.id,3) join tab1 t115 on left(tt10.c,2) != left(tt.id,3) join tab1 t95 on left(tt10.c,2) != left(tt.id,3) join tab1 t75 on left(tt10.c,2) != left(tt.id,3) join tab1 t55 on left(tt10.c,2) != left(tt.id,3) join tab1 t35 on left(tt10.c,2) != left(tt.id,3) join tab1 t15 on left(tt10.c,2) != left(tt.id,3)
+		join tab1 t16 on left(tt10.c,2) != left(tt.id,3) join tab1 t36 on left(tt10.c,2) != left(tt.id,3) join tab1 t56 on left(tt10.c,2) != left(tt.id,3) join tab1 t76 on left(tt10.c,2) != left(tt.id,3) join tab1 t96 on left(tt10.c,2) != left(tt.id,3) join tab1 t116 on left(tt10.c,2) != left(tt.id,3) join tab1 t136 on left(tt10.c,2) != left(tt.id,3) join tab1 t156 on left(tt10.c,2) != left(tt.id,3) join tab1 t176 on left(tt10.c,2) != left(tt.id,3) join tab1 t196 on left(tt10.c,2) != left(tt.id,3)
+		join tab1 t197 on left(tt10.c,2) != left(tt.id,3) join tab1 t177 on left(tt10.c,2) != left(tt.id,3) join tab1 t157 on left(tt10.c,2) != left(tt.id,3) join tab1 t137 on left(tt10.c,2) != left(tt.id,3) join tab1 t117 on left(tt10.c,2) != left(tt.id,3) join tab1 t97 on left(tt10.c,2) != left(tt.id,3) join tab1 t77 on left(tt10.c,2) != left(tt.id,3) join tab1 t57 on left(tt10.c,2) != left(tt.id,3) join tab1 t37 on left(tt10.c,2) != left(tt.id,3) join tab1 t17 on left(tt10.c,2) != left(tt.id,3)
+		join tab1 t18 on left(tt10.c,2) != left(tt.id,3) join tab1 t38 on left(tt10.c,2) != left(tt.id,3) join tab1 t58 on left(tt10.c,2) != left(tt.id,3) join tab1 t78 on left(tt10.c,2) != left(tt.id,3) join tab1 t98 on left(tt10.c,2) != left(tt.id,3) join tab1 t118 on left(tt10.c,2) != left(tt.id,3) join tab1 t138 on left(tt10.c,2) != left(tt.id,3) join tab1 t158 on left(tt10.c,2) != left(tt.id,3) join tab1 t178 on left(tt10.c,2) != left(tt.id,3) join tab1 t198 on left(tt10.c,2) != left(tt.id,3)
+		join tab1 t199 on left(tt10.c,2) != left(tt.id,3) join tab1 t179 on left(tt10.c,2) != left(tt.id,3) join tab1 t159 on left(tt10.c,2) != left(tt.id,3) join tab1 t139 on left(tt10.c,2) != left(tt.id,3) join tab1 t119 on left(tt10.c,2) != left(tt.id,3) join tab1 t99 on left(tt10.c,2) != left(tt.id,3) join tab1 t79 on left(tt10.c,2) != left(tt.id,3) join tab1 t59 on left(tt10.c,2) != left(tt.id,3) join tab1 t39 on left(tt10.c,2) != left(tt.id,3) join tab1 t19 on left(tt10.c,2) != left(tt.id,3)
+		
+		where 
+			tt.id = @id
+',N'@id int',1
+
+
+/* gerar joins
+select
+	'j oin '+string_agg(j,' join ')
+from (
+	select
+		j = 'tab1 t'+convert(varchar,id)+' on left(tt10.c,2) != left(tt.id,3)'
+		,g = id%20
+	from
+		tab1 
+	where 
+		id <= 200 
+) t
+group by
+	g
+order by 
+	g
+*/
