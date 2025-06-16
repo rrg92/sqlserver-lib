@@ -1,4 +1,4 @@
-/*
+Ôªø/*
 	PowerLive - Parte 2
 	Novidades no SQL Server 2025
 
@@ -6,7 +6,7 @@
                                                                                                     
    Rodrigo Ribeiro Gomes
    6 anos na Power Tuning
-   Consultor -> Head de SQL Server  -> Head de InovaÁ„o
+   Consultor -> Head de SQL Server  -> Head de Inova√ß√£o
 
    https://iatalk.ing
    https://thesqltimes.com
@@ -124,7 +124,7 @@
 	-- Copilot no SSMS
 
 
--- Recapitulando o que h· de novo (passada r·pida)
+-- Recapitulando o que h√° de novo (passada r√°pida)
 --	https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17
 
 -- DEMO: Novas DMVs 2025 vs 2022
@@ -136,7 +136,7 @@
 -- JSON
 -- Json.sql
 
--- Novo algoritmo de compress„o
+-- Novo algoritmo de compress√£o
 -- BackupNewCompression.sql
 
 
