@@ -1,4 +1,4 @@
-﻿![Progresso](https://progress-bar.xyz/24/?width=200&title=124%2F514%20scripts)
+﻿![Progresso](https://progress-bar.xyz/30/?width=200&title=153%2F506%20scripts)
 # SQL Server Lib
 
 > [!TIP]
@@ -65,3 +65,4 @@ Eu vou aproveitar este repositório e deixar aqui uma série de links de referê
 - [Edvaldo Castro](https://edvaldocastro.com/)
 - [Gustavo Maia](https://gustavomaiaaguiar.wordpress.com/)
 - [Blog do Luti](https://luticm.blogspot.com/)
+- [Module Sign Info] (https://modulesigning.info/)
