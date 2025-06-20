@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ViewSetting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <columnSettings>
+    <ColumnSetting name="name">
+      <width>160</width>
+      <mergedColumns />
+    </ColumnSetting>
+    <ColumnSetting name="timestamp">
+      <width>160</width>
+      <mergedColumns />
+    </ColumnSetting>
+    <ColumnSetting name="database_name">
+      <width>100</width>
+      <mergedColumns />
+    </ColumnSetting>
+    <ColumnSetting name="session_id">
+      <width>100</width>
+      <mergedColumns />
+    </ColumnSetting>
+    <ColumnSetting name="scheduler_id">
+      <width>100</width>
+      <mergedColumns />
+    </ColumnSetting>
+    <ColumnSetting name="opcode">
+      <width>100</width>
+      <mergedColumns />
+    </ColumnSetting>
+    <ColumnSetting name="event_sequence">
+      <width>100</width>
+      <mergedColumns />
+    </ColumnSetting>
+    <ColumnSetting name="wait_type">
+      <width>232</width>
+      <mergedColumns />
+    </ColumnSetting>
+    <ColumnSetting name="file_handle">
+      <width>100</width>
+      <mergedColumns />
+    </ColumnSetting>
+    <ColumnSetting name="offset">
+      <width>100</width>
+      <mergedColumns />
+    </ColumnSetting>
+    <ColumnSetting name="user_data_pointer">
+      <width>100</width>
+      <mergedColumns />
+    </ColumnSetting>
+  </columnSettings>
+</ViewSetting>
