@@ -1,4 +1,4 @@
-﻿![Progresso](https://progress-bar.xyz/33/?width=200&title=174%2F523%20scripts)
+﻿![Progresso](https://progress-bar.xyz/38/?width=200&title=195%2F507%20scripts)
 # SQL Server Lib
 
 > [!TIP]
