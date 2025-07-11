@@ -65,4 +65,4 @@ Eu vou aproveitar este repositório e deixar aqui uma série de links de referê
 - [Edvaldo Castro](https://edvaldocastro.com/)
 - [Gustavo Maia](https://gustavomaiaaguiar.wordpress.com/)
 - [Blog do Luti](https://luticm.blogspot.com/)
-- [Module Sign Info] (https://modulesigning.info/)
+- [Module Sign Info](https://modulesigning.info/)
