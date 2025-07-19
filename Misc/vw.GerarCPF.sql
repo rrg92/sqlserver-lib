@@ -25,8 +25,8 @@
 USE master
 GO
 
-IF OBJECT_ID('dbo.vwGerarCPF','V') IS NOT NULL
-	EXEC('CREATE VIEW dbo.vwGerarCPF as select 1')
+IF OBJECT_ID('dbo.vwGeraCPF','V') IS NULL
+	EXEC('CREATE VIEW dbo.vwGeraCPF as select 1 StubVersion')
 GO
 
 ALTER VIEW dbo.vwGeraCPF
