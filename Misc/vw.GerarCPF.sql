@@ -76,15 +76,15 @@ AS
 									FROM 
 										(
 											SELECT
-												 convert(int,1000*RAND(CHECKSUM(NEWID())))%9 as n1
-												,convert(int,1000*RAND(CHECKSUM(NEWID())))%9 as n2
-												,convert(int,1000*RAND(CHECKSUM(NEWID())))%9 as n3
-												,convert(int,1000*RAND(CHECKSUM(NEWID())))%9 as n4
-												,convert(int,1000*RAND(CHECKSUM(NEWID())))%9 as n5
-												,convert(int,1000*RAND(CHECKSUM(NEWID())))%9 as n6
-												,convert(int,1000*RAND(CHECKSUM(NEWID())))%9 as n7
-												,convert(int,1000*RAND(CHECKSUM(NEWID())))%9 as n8
-												,convert(int,1000*RAND(CHECKSUM(NEWID())))%9 as n9
+												 convert(int,1000*RAND(CHECKSUM(NEWID())))%10 as n1
+												,convert(int,1000*RAND(CHECKSUM(NEWID())))%10 as n2
+												,convert(int,1000*RAND(CHECKSUM(NEWID())))%10 as n3
+												,convert(int,1000*RAND(CHECKSUM(NEWID())))%10 as n4
+												,convert(int,1000*RAND(CHECKSUM(NEWID())))%10 as n5
+												,convert(int,1000*RAND(CHECKSUM(NEWID())))%10 as n6
+												,convert(int,1000*RAND(CHECKSUM(NEWID())))%10 as n7
+												,convert(int,1000*RAND(CHECKSUM(NEWID())))%10 as n8
+												,convert(int,1000*RAND(CHECKSUM(NEWID())))%10 as n9
 										) R
 								) C1BASE
 						) C1
