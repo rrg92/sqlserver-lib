@@ -666,6 +666,7 @@ declare
 	,@ColName sysname
 	,@LineNum int
 	,@WarningLines varchar(max)
+	,@buffer nvarchar(max)
 
 select 
 	@IsDac = Ep.is_admin_endpoint
@@ -799,7 +800,7 @@ begin
 		-- iterative over chars 
 		-- IF line break found, print it and starts again.
 		set @LineNum = 0;
-		set @WarningLines = '';
+		set @buffer = '';
 		WHILE @i < @len
 		BEGIN
 			-- Find next linebreak! 
@@ -811,9 +812,11 @@ begin
 			begin
 				set @LineNum += 1;
 				-- print entire line!
-				set @LineLength = @NextLineIndex-@i-1
+				set @LineLength = @NextLineIndex-@i
 				set @start = @i;
 				set @i = @NextLineIndex + 1;
+
+				
 
 				IF @Debug = 1 RAISERROR('	--	LineNum:%d, Length: %d',0,1,@LineNum,@LineLength) with nowait;
 
@@ -824,8 +827,13 @@ begin
 						set @i = @start+@LineLength;
 					end
 					
-
-				print substring(@ObjectDefinition,@start,@LineLength)
+				if @LineLength <= 0 -- empty line. Add to buffer because print or raiseror add space if print empty line
+					set @buffer += nchar(13)+nchar(10)
+				else begin
+				   set @buffer += substring(@ObjectDefinition,@start,@LineLength)
+				   print @buffer
+				   set @buffer = '';
+				end
 									
 				if @LineLength >  @MaxLineSize -- print limit
 				begin
@@ -837,6 +845,10 @@ begin
 
 			
 		END
+
+		-- if buffer contains something, print!
+		if len(@buffer) > 0
+			print @buffer;
 
 		print ''
 
