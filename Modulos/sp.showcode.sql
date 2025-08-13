@@ -684,6 +684,7 @@ declare
 	,@LineNum int
 	,@WarningLines varchar(max)
 	,@buffer nvarchar(max)
+	,@line nvarchar(max) 
 
 select 
 	@IsDac = Ep.is_admin_endpoint
@@ -872,20 +873,29 @@ begin
 
 				IF @Debug = 1 RAISERROR('	--	LineNum:%d, Length: %d',0,1,@LineNum,@LineLength) with nowait;
 
+				-- if current line overflows the limit, then we print just the limi, and next loop we check the rest.
 				if @mode = 'text'
 					if @LineLength > @MaxLineSize
 					begin
 						set @LineLength =  @MaxLineSize
 						set @i = @start+@LineLength;
 					end
-					
-				if @LineLength <= 0 -- empty line. Add to buffer because print or raiseror add space if print empty line
-					set @buffer += nchar(13)+nchar(10)
-				else begin
-				   set @buffer += substring(@ObjectDefinition,@start,@LineLength)
-				   print @buffer
-				   set @buffer = '';
+
+			    if @LineLength <= 0
+					set @LineLength = 0;
+
+				set @line = substring(@ObjectDefinition,@start,@LineLength)	+ nchar(13)+nchar(10)
+
+				-- we will bufferize max as possible to avoid lot of writes to client, optimizing performance
+				-- because print limit of 4000, if current line dont fit in buffer, then we flush them to client.
+				if len(@buffer) + len(@line) > 4000
+				begin 
+					if len(@buffer) > 0 -- security for void print if buffer is empty and line is already grather than 4k
+						print @buffer;
+					set @buffer = '';
 				end
+				
+				set @buffer += @line; -- here, our buffer is ready to acept line!
 									
 				if @LineLength >  @MaxLineSize -- print limit
 				begin
