@@ -16,46 +16,50 @@
 		Originalmente, a sp_helptext precisa que você passe o nome exato do objeto!
 
 		As vezes, você lembra só uma parte do nome, não lembra o banco exato, etc.
-		Com a sp_helptext2 você pode buscar város procs, exibir o codigo original (no modo sp_helptext) ou até retornar um XML (que fica clicável no SSMS)
+		Com a sp_showcode você pode buscar város procs, exibir o codigo original (no modo sp_helptext) ou até retornar um XML (que fica clicável no SSMS)
 
 		Eu deixei a doc original em inglês (péssimo inglês, aceito revisões), pois acredito que essa proc possa ser útil no mundo inteiro.
 		Mas aqui segue alguns exemplos de uso em português:
 
 			Exemplos:
-				> sp_helptext2 MinhaProc
+				> sp_showcode MinhaProc
 					Exibe o texto da proc MinhaProc (ali na aba messages) do banco atual.
 					A principal diferença aqui com a original é a forma que eu uso para fazer o print.
 					A sp_helptext original retornaria como um resultset (que perde a formatação quando você copia no SSMS)
 		
-				> sp_helptext2 '%..MinhaProc'
+				> sp_showcode '%..MinhaProc'
 					Aqui, evoluimos o nível, fazendo ele procurar em todos os bancos e esquemas.
 					Se achar mais de 1 objeto com esse nome, ele vai exibir uma lista pra você refinar.
 					Se achar só 1, printa direto.
 					Note que, por padrão, ele não procura em todos os bancos. Você deve explicitamente solicitar isso usando o wildcard.
 					O formato é Banco.Esquema.Objeto, onde cada parte pode conter o wildcard como se você estiver filtrando com um LIKE.
 
-				> sp_helptext2 '%..MinhaProc', @all = 1
+				> sp_showcode '%..MinhaProc', @all = 1
 					A diferença desse pro anterior é que você está forçando a printar tudo que encontrar... 
 					Tenha cuidado ao usar isso, pois se retornar 100 procs grandes, ele vai printar isso pro teu client
 
-				> sp_helptext2 '%..MinhaProc','xml', @all = 1
+				> sp_showcode '%..MinhaProc','xml', @all = 1
 					Aqui trocamos o modo pra XML. Ao invés de printar, ele vai retornar um resultset com os objetos como XML igual a sp_whoisactive faz.
 					Aí fica clicável no SSMS e já abre em outra aba.
+				
+				>  sp_showcode '%..MinhaProc','xml', @all = 1, @top = 100
+					Por padrão, ela traz somente os 50 primeiros objetos encontrados.
+					Você pode aumentar o limite usando o parâmetro @top. Se colocar o valor 0, então ele traz tudo.
 		
-				> sp_helptext2 'Loja12%..vwNotasFiscais',@all = 1
+				> sp_showcode 'Loja12%..vwNotasFiscais',@all = 1
 					Aqui é mais um exemplo de um filtro elaborado...
 					No caso, ele vai procurar e exibir o objeto chamado vwNotasFiscais em todos os bancos que começam com Loja12 , em todos os schemas
 
-				> sp_helptext2 'Vendas..%','xml', @types = 'function'
+				> sp_showcode 'Vendas..%','xml', @types = 'function'
 					Aqui é um exemplo do parâmetro @types. Você pode especificar um tipo da sys.objects.type ou type_desc.
 					Ou mesmo um trecho, como no exemplo acima, onde function irá corresponder a todos os tipos de função.
 					Neste caso, vai listar todas as functions no banco vendas. Se colocar @all = 1, printa tudo!
 
-				> sp_helptext2 'chamados/isAberto','xml'
+				> sp_showcode 'chamados/isAberto','xml'
 					Aqui vê está procurando por colunas computadas. Ao incluir uma barra (/), o valor após a barra se torna um filtro de coluna.
 					Você pode usar % para filtrar várias colunas.
 
-				> sp_helptext2 '%..%/is%',@all = 1
+				> sp_showcode '%..%/is%',@all = 1
 					Aqui por exemplo, estamos buscando todas as colunas computadas em todos os bancos e todas as tabelas que comecem com is.
 					A definição de todas elas sera printada como mensagem
 
@@ -68,6 +72,8 @@
 				É muita coisa e acho que dificilmente você terá casos assim.
 				Mas, se tiver, a proc irá quebrar a linha em várias outras e isso pode deixar o corpo da proc semanticamente incorreto, se comparado a original.
 				Nesses casos, considere usar XML para exibir.
+			- A sp_showcode foi criada pensando no seu uso primariamente com o SSMS, para o dia a dia o DBA.
+				Mas, se você precisar exportar (usando linha de comando, por exemplo), recomendo usar o modo export, que vai ajustar os parâmetros corretamente para que você possa escrever, em um arquivo, por exemplo.
 
 
 			
@@ -79,11 +85,11 @@ GO
 
 -- for rc4 decryption (used for encrypted procs)
 -- Based on Paul White (https://sqlperformance.com/2016/05/sql-performance/the-internals-of-with-encryption)
-IF OBJECT_ID('dbo.sp_helptext2_rc4decode','P') IS NULL
-	EXEC('CREATE PROC dbo.sp_helptext2_rc4decode AS')
+IF OBJECT_ID('dbo.sp_showcode_rc4decode','P') IS NULL
+	EXEC('CREATE PROC dbo.sp_showcode_rc4decode AS')
 GO
 
-ALTER PROCEDURE dbo.sp_helptext2_rc4decode
+ALTER PROCEDURE dbo.sp_showcode_rc4decode
 (
      @Pwd varbinary(256)
     ,@Text varbinary(MAX)
@@ -190,12 +196,12 @@ END;
 GO
 
 
-IF OBJECT_ID('dbo.sp_helptext2','P') IS NULL
-	EXEC('CREATE PROC sp_helptext2 AS SELECT StubVersion = 1')
+IF OBJECT_ID('dbo.sp_showcode','P') IS NULL
+	EXEC('CREATE PROC sp_showcode AS SELECT StubVersion = 1')
 GO
 
 
-ALTER PROC sp_helptext2 (
+ALTER PROC sp_showcode (
 	 -- Specify the object name in format Db.Schema.ObjectName or Schema.ObjectName or ObjectName
 	 -- You can add column filters, for search by computed columns, using syntax /ColumnName in ObjectName
 	 -- You can use wildcards in any part, for example, sp_help%, ou Test_.%.vw%
@@ -218,6 +224,10 @@ ALTER PROC sp_helptext2 (
 								-- If objects you are searching contains lines above that limit, consider using another mode, like XML or sp_helptext.
 								-- You can lower the max using @MaxLineSize
 	--		trunc|4			-- Same as text, but if a line exceed max print size, just show the a BIG LINE WARNING and truncate line.
+	--		export|5		-- Return dafinitions safe to be exported, when you running this proc in some commandline or custom app that will handle by its own the result.
+							-- no headers, GO statements are returned, just raw defintion, what is it useful for expor
+							-- Will return one defintion per line.
+	--		exportgo|6		-- Same as export, but include headers and GO statements to delimiter object end start and end!
 	 @mode varchar(100) = 'text'
 
 	,-- By default, proc only prints if just extacly one object is found.
@@ -243,6 +253,12 @@ ALTER PROC sp_helptext2 (
 	,-- max line size for text or trunc modes. The maximum value for this is 4000, due print limit.
 	 @MaxLineSize smallint = 4000
 
+	,-- include GO statements between headers and at end of proc. Not used when mode ir xml or sp_helptext
+	 @go bit = 1
+
+	,-- include descriptive headers. NOt used when mode is sp_helptext and xml.
+	 @headers bit = 1
+
 	-- Enable some messages for debugging.
 	,@Debug bit = 0
 )
@@ -259,26 +275,29 @@ ALTER PROC sp_helptext2 (
 			- Add jobs
 
 	Examples:
-		> sp_helptext2 MyProcName
+		> sp_showcode MyProcName
 			Search in current db only and Print the body of object MyProcName if found. 
 		
-		> sp_helptext2 '%.MyProcName'
+		> sp_showcode '%.MyProcName'
 			Print the body of proc MyProcName if exists just one.
 			If multiple is found present the list to you choose.
 
-		> sp_helptext2 '%..MyProcName', @all = 1
+		> sp_showcode '%..MyProcName', @all = 1
 			Print the body of all object called MyProcName in instance
 
-		> sp_helptext2 '%..MyProcName','xml'
+		> sp_showcode '%..MyProcName', @all = 1, @top = 100
+			By default, only first 50 objects are returned. @top allows controls this. If 0, means unlimited.
+
+		> sp_showcode '%..MyProcName','xml'
 			Return the body of all MyProcName found in instance as XML, to be clicable in SSMS.
 		
-		> sp_helptext2 'Test_%..proc1',@all = 1
+		> sp_showcode 'Test_%..proc1',@all = 1
 			Print all body of objects with name proc1 found in every db which name start with Test_
 			
-		> sp_helptext2 'Sales..%','xml', @types = 'proc'
+		> sp_showcode 'Sales..%','xml', @types = 'proc'
 			Return body of all procedures in database called Sales, as a XML.	
 
-		> sp_helptext2 '%..test/%','xml', @all = 1
+		> sp_showcode '%..test/%','xml', @all = 1
 			Return all computer columns of table test in all dbs1	
 */
 AS
@@ -338,8 +357,8 @@ IF @Debug = 1
 
   
 
-if object_id('tempdb..#SpHelpText2_FilterTypes') IS NOT NULL
-	DROP TABLE #SpHelpText2_FilterTypes
+if object_id('tempdb..#sp_showcode_FilterTypes') IS NOT NULL
+	DROP TABLE #sp_showcode_FilterTypes
 
 DECLARE
 	@TypesXML XML = '<t>'+REPLACE(@type,',','</t><t>')+'</t>'
@@ -348,7 +367,7 @@ DECLARE
 select
 	ot.TypeAb as TypeName
 INTO
-	#SpHelpText2_FilterTypes
+	#sp_showcode_FilterTypes
 from
 	(
 		SELECT
@@ -383,7 +402,7 @@ from
 	) ot
 
 IF @Debug = 1
-	select * from #SpHelpText2_FilterTypes
+	select * from #sp_showcode_FilterTypes
 
 	
 
@@ -395,6 +414,8 @@ SET @mode = CASE @mode
 				WHEN '2' THEN 'xml'
 				WHEN '3' THEN 'text'
 				WHEN '4' THEN 'trunc'
+				WHEN '5' THEN 'export'
+				WHEN '6' THEN 'exportgo'
 				ELSE @mode
 			END
 
@@ -402,7 +423,7 @@ IF @Debug = 1
 	RAISERROR('Output mode = %s',0,1,@mode) with nowait;
 
 
-IF @mode NOT IN ('sp_helptext','xml','text','trunc')
+IF @mode NOT IN ('sp_helptext','xml','text','trunc','export','exportgo')
 BEGIN
 	RAISERROR('Invalid @mode: %s',16,1,@mode);
 	return;
@@ -436,6 +457,7 @@ DECLARE @FoundObjects TABLE (
 	,TypeDesc varchar(200)
 	,IsInSysComments bit
 	,IsInMasterComments bit
+	,FullName as QUOTENAME(DbName)+'.'+QUOTENAME(ObjectSchema)+'.'+QUOTENAME(ObjectName)
 )
 
 DECLARE
@@ -456,14 +478,14 @@ if @LeftLimit = 0
 	set @LeftLimit = NULL
 
 -- contians found systemprocs, to prevent load duplicates
-if object_id('tempdb..#SpHelpText2_SystemProcs') IS NOT NULL
-	DROP TABLE #SpHelpText2_SystemProcs
+if object_id('tempdb..#sp_showcode_SystemProcs') IS NOT NULL
+	DROP TABLE #sp_showcode_SystemProcs
 
-create table #SpHelpText2_SystemProcs(
+create table #sp_showcode_SystemProcs(
 	 SchemaName sysname
 	 ,ObjectName sysname
 )
-create unique index IxSystemProcs ON #SpHelpText2_SystemProcs(SchemaName,ObjectName);
+create unique index IxSystemProcs ON #sp_showcode_SystemProcs(SchemaName,ObjectName);
 
 WHILE 1 = 1
 BEGIN
@@ -492,9 +514,6 @@ BEGIN
 			,S.name
 			,ColName
 			,O.object_id
-			,CASE 
-				WHEN @NeedsDefinition = 1 THEN ISNULL(O.ObjectDefintion,OBJECT_DEFINITION(O.object_id))
-			END
 			,OBJECTPROPERTY(O.object_id, ''IsEncrypted'')
 			,O.type
 			,O.type_desc
@@ -504,7 +523,6 @@ BEGIN
 			(
 				select
 					name,object_id,type = CONVERT(varchar(3),type),type_desc ,schema_id
-					,ObjectDefintion = CONVERT(nvarchar(max),NULL)
 					,ColName = CONVERT(sysname,NULL)
 				from
 					sys.all_objects O 
@@ -512,7 +530,7 @@ BEGIN
 				union all 
 
 				select 
-					name COLLATE DATABASE_DEFAULT,object_id,''TRS'',''SERVER_DDL_TRIGGER'',1,NULL,NULL
+					name COLLATE DATABASE_DEFAULT,object_id,''TRS'',''SERVER_DDL_TRIGGER'',1,NULL
 				from
 					sys.server_triggers
 				WHERE
@@ -521,7 +539,7 @@ BEGIN
 				union all 
 
 				select 
-					name COLLATE DATABASE_DEFAULT,object_id,''TRD'',''DATABASE_DDL_TRIGGER'',1,NULL,NULL
+					name COLLATE DATABASE_DEFAULT,object_id,''TRD'',''DATABASE_DDL_TRIGGER'',1,NULL
 				from
 					sys.triggers
 				WHERE
@@ -534,7 +552,6 @@ BEGIN
 					,C.object_id
 					,''CCC'',''COMPUTED_COLUMN''
 					,O.schema_id
-					,definition
 					,C.name
 				from
 					sys.computed_columns  C
@@ -579,9 +596,9 @@ BEGIN
 				O.type IN (''TRS'',''TRD'',''CCC'')
 			)
 			AND
-			O.type IN (SELECT TypeName COLLATE DATABASE_DEFAULT FROM #SpHelpText2_FilterTypes)
+			O.type IN (SELECT TypeName COLLATE DATABASE_DEFAULT FROM #sp_showcode_FilterTypes)
 			AND NOT EXISTS (
-				SELECT * FROM #SpHelpText2_SystemProcs
+				SELECT * FROM #sp_showcode_SystemProcs
 				WHERE SchemaName = S.name COLLATE DATABASE_DEFAULT 
 				and Objectname = O.name COLLATE DATABASE_DEFAULT
 			)
@@ -589,7 +606,7 @@ BEGIN
 	
 	
 	select @StartId = max(id) from @FoundObjects
-	INSERT INTO @FoundObjects(DbName,ObjectName,ObjectSchema,ColName,ObjectId,ObjectDefinition,IsEncrypted,ObjType,TypeDesc,IsInSysComments,IsInMasterComments)
+	INSERT INTO @FoundObjects(DbName,ObjectName,ObjectSchema,ColName,ObjectId,IsEncrypted,ObjType,TypeDesc,IsInSysComments,IsInMasterComments)
 	exec @spsql @sql,N'@object sysname,@schema sysname,@column sysname,@NeedsDefinition bit',@FilterObject,@FilterSchema,@FilterColumn,@NeedsDefinition
 	set @FoundCount = @@ROWCOUNT;
 	set @TotalFound += @FoundCount
@@ -611,7 +628,7 @@ BEGIN
 	-- add systemprocs!
 	-- if sysall disable, keep that table empty, so it dont affect not exists filter!
 	IF @sysall = 0 AND @FoundCount >= 1
-		insert into #SpHelpText2_SystemProcs
+		insert into #sp_showcode_SystemProcs
 		select distinct ObjectSchema,ObjectName from @FoundObjects
 		where 
 			ObjectId < 0 
@@ -685,7 +702,6 @@ begin
 		 @id = id
 		,@DbName = DbName
 		,@SchemaObject = QUOTENAME(ObjectSchema)+'.'+QUOTENAME(ObjectName)
-		,@ObjectDefinition = ObjectDefinition
 		,@IsEncrypted = IsEncrypted
 		,@ObjectId = ObjectId
 		,@ObjectType = ObjType
@@ -701,6 +717,7 @@ begin
 
 	set @sphelptext = @DbName+'..sp_helptext';
 	set @spsql = @DbName+'..sp_executesql';
+	set @ObjectDefinition = null
 
 	if @IsEncrypted = 1
 	begin
@@ -744,17 +761,46 @@ begin
 
 
 		IF @Debug = 1 RAISERROR('Invoking Rc4 decrypt...',0,1) WITH NOWAIT;
-		exec sp_helptext2_rc4decode @Rc4Key,@ImageVal,@ObjectDefinition OUTPUT
+		exec sp_showcode_rc4decode @Rc4Key,@ImageVal,@ObjectDefinition OUTPUT
 		IF @Debug = 1 RAISERROR('	Decrypted!',0,1) WITH NOWAIT;
+	end	else begin
+		
+		set @sql = '
+			select 
+				@definition = OBJECT_DEFINITION(@ObjectId)
+		'
+
+		if @ObjectType = 'CCC'
+			SET @sql = '
+				SELECT 
+					@definition = definition 
+				FROM 
+					select *From sys.computed_columns C
+				WHERE
+					C.object_id = @ObjectID
+					AND
+					C.name = @column
+			'
+
+
+		-- get object definition!
+		IF @Debug = 1 RAISERROR('Getting object defintion',0,1) with nowait;
+		exec @spsql @sql,N'@ObjectId int,@definition nvarchar(max) OUTPUT',@ObjectId,@ObjectDefinition OUTPUT
+		IF @Debug = 1 RAISERROR('	Done!',0,1) with nowait;
+	end
+
+	if @ObjectDefinition is null  -- must exists some definition. Dont exists due some bug in prev code or permissions. Likely permission.
+	begin
+		raiserror('-- Cannot determine %s definition. Check your permissions or report bug!',0,1,@SchemaObject) with nowait;
+		continue;
 	end
 	
-	if @mode = 'xml'
+	if @mode in ('xml','export','exportgo')
 	begin
 		if @ObjectDefinition is not null
 			update @FoundObjects 
 			set ObjectDefinition = @ObjectDefinition, IsEncrypted = 0
-			where IsEncrypted = 1 
-			and ObjectDefinition IS NULL
+			where  ObjectDefinition IS NULL
 			and Id = @id
 
 		continue -- useful just for check for encryptions!
@@ -769,34 +815,37 @@ begin
 
 	if @mode in ('text','trunc')
 	begin
-		if @ObjectDefinition is null  -- must exists some defintion. Dont exists due some bug in prev code or permissions. Likely permission.
-		begin
-			raiserror('-- Cannot determine %s definition. Check your permissions or report bug!',0,1,@SchemaObject) with nowait;
-			continue;
-		end
-
 		set @len = len(@ObjectDefinition)
 		set @i = 0;
 
-		raiserror('-- Generated by sp_helptext2',0,1);
-		raiserror('-- Object: [%s].%s',0,1,@DbName,@SchemaObject)
-		
-
-		IF @ObjectType = 'CCC' -- column
+		IF @headers = 1
 		BEGIN
-		   raiserror('-- Column: [%s]',0,1,@ColName)
-		   PRINT '-- '+@ObjectDefinition;
+			raiserror('-- Generated by sp_showcode',0,1);
+			raiserror('-- Object: [%s].%s',0,1,@DbName,@SchemaObject)
+		
+			IF @ObjectType = 'CCC' -- column
+			BEGIN
+			   raiserror('-- Column: [%s]',0,1,@ColName)
+			   PRINT '-- '+@ObjectDefinition;
+			END
+
+			raiserror('',0,1) with nowait; -- try force a flush!
+
+			if @go = 1
+				print 'GO'
 		END
 
-		raiserror('',0,1) with nowait; -- try force a flush!
+		
 
 		if @ObjectType = 'CCC'
 			CONTINUE;
 
+
+
 		-- force always have a last line break!
 		if right(@ObjectDefinition,1) != NCHAR(10)
 			SET @ObjectDefinition += NCHAR(10)
-
+		
 		-- iterative over chars 
 		-- IF line break found, print it and starts again.
 		set @LineNum = 0;
@@ -813,10 +862,13 @@ begin
 				set @LineNum += 1;
 				-- print entire line!
 				set @LineLength = @NextLineIndex-@i
+				
+				-- if prev char is Lf, skip it!
+				if @NextLineIndex >= 2 AND unicode(substring(@ObjectDefinition,@NextLineIndex-1,1)) = 13
+					set @LineLength -= 1;
+					
 				set @start = @i;
 				set @i = @NextLineIndex + 1;
-
-				
 
 				IF @Debug = 1 RAISERROR('	--	LineNum:%d, Length: %d',0,1,@LineNum,@LineLength) with nowait;
 
@@ -850,6 +902,9 @@ begin
 		if len(@buffer) > 0
 			print @buffer;
 
+		IF @go = 1
+			print 'GO'
+
 		print ''
 
 
@@ -857,6 +912,7 @@ begin
 	end
 
 end
+
 
 
 -- for each object, run original sp_helptext!
@@ -871,7 +927,7 @@ begin
 				'-- ',
 				[processing-instruction(q)] = case 
 							when IsEncrypted = 1 then 'ENCRYPTED: Object definition encrypted. Connect as DAC to decrypt!'
-							else 'generated by sp_helptext2. you can copy and paste in new ssms tab to better visualize'+NCHAR(13)+NCHAR(10)
+							else 'generated by sp_showcode. you can copy and paste in new ssms tab to better visualize'+NCHAR(13)+NCHAR(10)
 								+CleanObjectDefinition
 								+nchar(13)+nchar(10)+'-- '
 						end
@@ -896,10 +952,47 @@ begin
 	return;
 end
 
+if @mode in ('export','exportgo')
+BEGIN
+	
+
+	IF @mode = 'export'
+		select 
+			@go = 0, @headers = 0
+
+	SELECT
+		[text] = 
+		+case when @headers = 1 THEN 
+		+CrLf+'-- Generated by sp_showcode '+F.FullName
+		+CrLf+'-- Object: '+F.FullName
+		+ISNULL(CrLf+'-- Column: '+F.ColName,'')
+		+CrLf
+		+case when @go = 1 then 'GO' else '' end
+		ELSE '' END
+		+CrLf
+		+CrLf
+
+		+ObjectDefinition
+		
+		+case when @go = 1 THEN 
+		+CrLf
+		+'GO'
+		+CrLf
+		ELSE '' END
+		+CrLf
+		+CrLf
+	FROM
+		@FoundObjects F
+		CROSS JOIN (
+			SELECT 
+				CrLf = NCHAR(13)+NCHAR(10)
+		) V
+END	
+
 
 GO
 
-EXEC sp_ms_marksystemobject sp_helptext2
+EXEC sp_ms_marksystemobject sp_showcode
 GO
-EXEC sp_ms_marksystemobject sp_helptext2_rc4decode
+EXEC sp_ms_marksystemobject sp_showcode_rc4decode
 GO
