@@ -7,6 +7,7 @@
 		Uma versão melhorada da sp_helptext, permitindo maior flexibilidade... 
 		Features:
 			- Pode usar o % para procurar o objeto (isso me faz muito falta, ja que a original só aceita o nome exato)
+			- Pode especificar múltiplas opções de busca, incluindo negação.
 			- Procura em qualquer banco (prioridade é o atual, mas com pouco ajuste, vc pode procurar em outros)
 			- Já faz o print direto em texto, para facilitar a cópia, ou em XML, igual a sp_whoisactive faz	 (NOSSSA, isso agiliza muito)
 			- Permite filtrar por tipo
@@ -27,24 +28,31 @@
 					A principal diferença aqui com a original é a forma que eu uso para fazer o print.
 					A sp_helptext original retornaria como um resultset (que perde a formatação quando você copia no SSMS)
 		
-				> sp_showcode '%..MinhaProc'
+				> sp_showcode '%.%.MinhaProc'
 					Aqui, evoluimos o nível, fazendo ele procurar em todos os bancos e esquemas.
 					Se achar mais de 1 objeto com esse nome, ele vai exibir uma lista pra você refinar.
 					Se achar só 1, printa direto.
 					Note que, por padrão, ele não procura em todos os bancos. Você deve explicitamente solicitar isso usando o wildcard.
 					O formato é Banco.Esquema.Objeto, onde cada parte pode conter o wildcard como se você estiver filtrando com um LIKE.
 
-				> sp_showcode '%..MinhaProc', @all = 1
+				> sp_showcode '%.%.MinhaProc', @all = 1
 					A diferença desse pro anterior é que você está forçando a printar tudo que encontrar... 
-					Tenha cuidado ao usar isso, pois se retornar 100 procs grandes, ele vai printar isso pro teu client
+					Tenha cuidado ao usar isso, pois se retornar 20 procs grandes, ele vai printar isso pro teu client
 
-				> sp_showcode '%..MinhaProc','xml', @all = 1
+				> sp_showcode '%.%.MinhaProc','xml', @all = 1
 					Aqui trocamos o modo pra XML. Ao invés de printar, ele vai retornar um resultset com os objetos como XML igual a sp_whoisactive faz.
 					Aí fica clicável no SSMS e já abre em outra aba.
 				
-				>  sp_showcode '%..MinhaProc','xml', @all = 1, @top = 100
+				>  sp_showcode '%.%.MinhaProc','xml', @all = 1, @top = 100
 					Por padrão, ela traz somente os 50 primeiros objetos encontrados.
 					Você pode aumentar o limite usando o parâmetro @top. Se colocar o valor 0, então ele traz tudo.
+
+				> sp_showcode '%ven%'
+					Aqui ele vai procurar o objeto que tem ven no nome.
+					Como um filtro de schema não foi explicitamente definido, ele vai ignorar os schemas sys e INFORMATION_SCHEMA.
+				
+				> sp_showcode '%.%ven%'
+					Aqui é a mesma coisa, mas agora ele vai procurar no esquemas de sistema, pq um filtro de esquema (%) foi explicitamente definido.
 		
 				> sp_showcode 'Loja12%..vwNotasFiscais',@all = 1
 					Aqui é mais um exemplo de um filtro elaborado...
@@ -62,6 +70,10 @@
 				> sp_showcode '%..%/is%',@all = 1
 					Aqui por exemplo, estamos buscando todas as colunas computadas em todos os bancos e todas as tabelas que comecem com is.
 					A definição de todas elas sera printada como mensagem
+
+				> sp_showcode 'prcVenda,prcSales'
+					Aqui usamos um recurso mais avançado, que são múltiplas opções.
+					NEsse caso, ele vai procurar todos os objetos de usuário que contenha ven ou sal. Encontraria, por exemplo, prcVendas e prcSales.
 
 
 		Cuidados e considerações:
@@ -204,9 +216,11 @@ GO
 ALTER PROC sp_showcode (
 	 -- Specify the object name in format Db.Schema.ObjectName or Schema.ObjectName or ObjectName
 	 -- You can add column filters, for search by computed columns, using syntax /ColumnName in ObjectName
+	 -- you can specify multile options using comma and prefix with '-' to specify as "not".
 	 -- You can use wildcards in any part, for example, sp_help%, ou Test_.%.vw%
-	 -- If dont contains the % symbol, search only in current db. If contains %, will search in all db (limited to filtered db)
+	 -- By default, search only in current db, but using '%.%.%search%' will force search on all db and schema!
 	 -- If want force search in current db, preped and dot, example: .SomeObject%
+	 -- If no explicit schema filter is specified, proc will add implicit filters excluding sys and INFORMATION_SCHEMA, causing search happens only in user objects.
 	 -- Check examples bellow
 	 @text sysname
 
@@ -233,6 +247,7 @@ ALTER PROC sp_showcode (
 	,-- By default, proc only prints if just extacly one object is found.
 	 -- If multiple matches are found, then proc will return a list of found objects you help refine your search
 	 -- Specify @all = 1, force proc print all bodies of all objects found. Use with caution, because this can generate lot of processing
+	 -- @all is automatically set to 1 if specify multiple expressions in @text, all with no wildcards;
 	 @all bit = 0
 
 
@@ -282,7 +297,7 @@ ALTER PROC sp_showcode (
 			Print the body of proc MyProcName if exists just one.
 			If multiple is found present the list to you choose.
 
-		> sp_showcode '%..MyProcName', @all = 1
+		> sp_showcode '%.%.MyProcName', @all = 1
 			Print the body of all object called MyProcName in instance
 
 		> sp_showcode '%..MyProcName', @all = 1, @top = 100
@@ -292,71 +307,163 @@ ALTER PROC sp_showcode (
 			Return the body of all MyProcName found in instance as XML, to be clicable in SSMS.
 		
 		> sp_showcode 'Test_%..proc1',@all = 1
-			Print all body of objects with name proc1 found in every db which name start with Test_
+			Print all body of objects with name proc1 found in every db, user schema only, which name start with Test_
 			
 		> sp_showcode 'Sales..%','xml', @types = 'proc'
-			Return body of all procedures in database called Sales, as a XML.	
+			Return body of all user procedures in database called Sales, as a XML.	
+
+		> sp_showcode '%.%test%','xml', @type = 'proc'
+			Return all procedures, including system schemas, containing test in name.
 
 		> sp_showcode '%..test/%','xml', @all = 1
-			Return all computer columns of table test in all dbs1	
+			Return all user computed columns of table test in all dbs1
+			
+		> sp_showcode '%,-%test%','xml', @all = 1
+			Return top user objects with text, except which contains test in name
+			
+
+		> sp_showcode 'sp_help,sp_helptrigger','xml'
+			Return text of both sp_help and sp_helptrigger, as XML
+			Note that dont need set @all = 1, because multiple options without wildcard was passed in first param.
+
+
 */
 AS
 
 SET NOCOUNT ON; 
 
 DECLARE
-	@FilterDb nvarchar(4000) 
-	,@FilterSchema nvarchar(4000) 
-	,@FilterObject nvarchar(4000)
-	,@FilterColumn nvarchar(4000)
-	,@IsWild sysname = 0
+	@IsWild sysname = 0
 
 IF NOT @MaxLineSize BETWEEN 2 AND 4000
 BEGIN
 	RAISERROR('@MaxLineSize must be between 2 and 4000',16,1);
 	return;
-END	
+END
 
 IF CHARINDEX('%',@text)	 > 0
 	SET @IsWild = 1
 
-set @FilterDb		= parsename(@text,3)
-set @FilterSchema	= parsename(@text,2)
-set @FilterObject	= parsename(@text,1)
+-- Parse!
+DECLARE
+	 @i int = 0
+	,@TextLen int = len(@text)
+	,@CurrentChar nvarchar(1), @NextChar nvarchar(1)
+	,@buff nvarchar(max) = ''
+	,@UserFilterCount int
 
-IF @FilterDb is null
-	set @FilterDb = DB_NAME()
+IF OBJECT_ID('tempdb..#sp_showcode_filters') IS NOT NULL
+	DROP TABLE #sp_showcode_filters;
 
-if @FilterSchema is null
-	set @FilterSchema = '%'
+CREATE TABLE #sp_showcode_filters (
+	ord int identity not null
+	,expr nvarchar(max)
+	,IsNeg bit
+	,FilterDb nvarchar(4000)
+	,FilterSchema nvarchar(4000)
+	,FilterObject nvarchar(4000)
+	,FilterColumn nvarchar(4000)
+	,ExprReal nvarchar(max)
+	,IsWild as convert(bit,case when charindex('%',exprreal) > 0 then 1 else 0 end)
+);
 
-
-declare @ColSeparatorIndex int = CHARINDEX('/',@FilterObject)
-
-if @ColSeparatorIndex > 0
+while @i <=	@TextLen 
 begin
-	set @FilterColumn = SUBSTRING(@FilterObject,@ColSeparatorIndex+1,4000)
-	set @FilterObject = LEFT(@FilterObject,@ColSeparatorIndex-1)
+	set @i += 1;
+	set @CurrentChar = substring(@text+',',@i,1)
+	set @NextChar = substring(@text,@i+1,1)
+
+	if @CurrentChar = N'\' and @NextChar in (N'\',N',')
+		select @buff += @NextChar, @i += 1;
+	else if @CurrentChar = N',' 
+	begin
+	   insert into #sp_showcode_filters(expr) values(@buff)
+	   set @buff = '';
+	end else
+		set @buff += @CurrentChar
 end
 
-if @FilterObject is null
+
+update f 
+set 
+	 FilterDb	= PF.FilterDb
+	,FilterSchema = PF.FilterSchema
+	,FilterObject = PF.FilterObject
+	,FilterColumn = PF.FilterColumn
+	,IsNeg = E.IsNeg
+	,ExprReal = e.ExprReal
+from
+	#sp_showcode_filters f
+	cross apply (
+		SELECT 
+			IsNeg = CASE
+						WHEN left(expr,1) = '-' THEN 1
+						ELSE 0 
+					END
+			,ExprReal = CASE
+							WHEN left(expr,1) = '-' THEN STUFF(F.expr,1,1,'')
+							ELSE expr 
+					END 
+	) E
+	cross apply (
+		SELECT 
+			BF.FilterDb
+			,BF.FilterSchema
+			,FilterObject = CASE 
+								WHEN ColSepIndex > 0 THEN LEFT(BF.FilterObject,ColSepIndex-1)
+								ELSE BF.FilterObject
+							END
+			,FilterColumn = CASE 
+								WHEN ColSepIndex > 0 THEN SUBSTRING(BF.FilterObject,ColSepIndex+1,4000)
+								ELSE '%'
+							END
+		FROM (
+		   SELECT 
+				 FilterDb		= isnull(parsename(E.ExprReal,3),db_name())
+				,FilterSchema	= parsename(E.ExprReal,2)
+				,FilterObject	= parsename(E.ExprReal,1)
+				,ColSepIndex	= CHARINDEX('/',parsename(E.ExprReal,1))
+		) BF
+		
+	) PF
+WHERE
+	PF.FilterObject IS NOT NULL
+
+SET @UserFilterCount = @@ROWCOUNT
+
+
+-- if not explicit positive schema filter
+if not exists(select * from #sp_showcode_filters where IsNeg = 0 and FilterSchema is not null) and @IsWild = 1
 begin
-	raiserror('@text must be in format Db.Schema.Object[/Column] or Schema.Object[/Column] or Object[/Column]. Can contains wildcards in each part. Max 128 chars',16,1)
+	insert into #sp_showcode_filters(IsNeg,FilterDb,FilterSchema,FilterObject,FilterColumn)
+	values
+		(1,'%','sys','%','%')
+		,(1,'%','INFORMATION_SCHEMA','%','%')
+end
+
+-- 
+UPDATE #sp_showcode_filters
+SET
+	FilterSchema = ISNULL(FilterSchema,'%')
+
+
+IF @Debug = 1
+	SELECT * FROM #sp_showcode_filters f;
+
+if @UserFilterCount = 0
+begin
+	raiserror('@text must be in format {[-][DbFilter.][SchemaFilter.]ObjectFilter[/column]}[,...n]',16,1)
 	return;
 end
 
--- set db filter to current if text dont contains the % wildcard of if starts with dot, forcing current db.
-if left(@text,1) = '.' OR @IsWild = 0 
+ -- If user specified only non wild filter!
+if @UserFilterCount = (select count(*) from #sp_showcode_filters where IsWild = 0 and expr is not null)
 begin
-	set @FilterDb = DB_NAME();
-	IF @Debug = 1 RAISERROR('Changed @FilterDb to current due starting dot',0,1) with nowait
+	set @all = 1;
+	if @Debug  = 1 raiserror('Changed @all to 1 due user explicit multiple filter.',0,1) with nowait;
 end
-		 
-IF @Debug = 1
-	RAISERROR('Filters: Db = %s | Schema = %s | Object = %s | Column: %s',0,1,@Filterdb,@FilterSchema,@FilterObject, @FilterColumn) with nowait;
 
-  
-
+		
 if object_id('tempdb..#sp_showcode_FilterTypes') IS NOT NULL
 	DROP TABLE #sp_showcode_FilterTypes
 
@@ -404,10 +511,6 @@ from
 IF @Debug = 1
 	select * from #sp_showcode_FilterTypes
 
-	
-
-
-
 -- validate mode!
 SET @mode = CASE @mode
 				WHEN '1' THEN 'sp_helptext'
@@ -436,13 +539,32 @@ SELECT
 	ROW_NUMBER() OVER(ORDER BY IsCurrentDB DESC, database_id)
 	,name
 FROM
-	sys.databases 
+	sys.databases d 
 	CROSS APPLY (
 		SELECT 
 			IsCurrentDb = CASE WHEN DB_NAME()  = name THEN 1 ELSE 0 END
-	) D
+	) c
 WHERE
-	name like @FilterDb
+	-- an explicit db must be select with a positive filter
+	-- Negative filters can remove this db, but anyway, before remove, we must be able to have something to select
+	-- So, this step, we just intereseted include filters, because it determines which dbs we must look on.
+	-- If user specify just negative filter, this dont intereset in this part, because by default, no db is selected unless user explicity filter
+	-- FOr example, if @text is '-DbX.%sys.%', because no positive filter exists, then nothing is select.
+	-- The intent of negative filters is a "second chance" over positives, because, by default, nothing is selected, unless positive filter select it.
+	-- Due that, at this point, we just select dbs in positive filters.
+	exists ( 
+		select
+			*
+		from
+			#sp_showcode_filters f
+		where
+			d.name like f.FilterDb
+			and
+			f.IsNeg = 0
+	)
+
+IF @Debug = 1
+	SELECT * FROM @DbList
 
 DECLARE @FoundObjects TABLE (
 	 Id int not null identity primary key
@@ -558,39 +680,53 @@ BEGIN
 					JOIN
 					sys.all_objects O
 						ON O.object_id = C.object_id
-				WHERE
-					-- leave the constant scan ignore!
-					'''+ISNULL(LEFT(@FilterColumn,1),'NULL')+''' IS NOT NULL
 			) O
 			JOIN
 			sys.schemas	S
 				ON S.schema_id = O.schema_id
 			cross apply (
 				SELECT 
-					InSysComments = CASE WHEN EXISTS (
-													SELECT * FROM sys.syscomments C
-													WHERE C.id = O.object_id
-												) THEN 1 
-										ELSE 0 
-									END
-					,IsInMasterSysComments = CASE WHEN EXISTS (
-													SELECT * FROM master.sys.syscomments C
-													WHERE C.id = O.object_id
-												) THEN 1 
-										ELSE 0 
-									END
+					I.*
+				FROM
+				(
+					SELECT 
+						InSysComments = CASE WHEN EXISTS (
+														SELECT * FROM sys.syscomments C
+														WHERE C.id = O.object_id
+													) THEN 1 
+											ELSE 0 
+										END
+						,IsInMasterSysComments = CASE WHEN EXISTS (
+														SELECT * FROM master.sys.syscomments C
+														WHERE C.id = O.object_id
+													) THEN 1 
+											ELSE 0 
+										END
+				) I
 			) A
 		WHERE
-			O.name like @object
-			AND
-			S.name like @schema
-			'+CASE WHEN @FilterColumn IS NULL THEN '' ELSE 'AND O.ColName like @column' END+'
+			0 = (
+				SELECT 
+					max(convert(int,IsNeg))
+				FROM
+					#sp_showcode_filters F
+				WHERE
+					O.name LIKE F.FilterObject COLLATE DATABASE_DEFAULT
+					AND
+					S.name LIKE F.FilterSchema COLLATE DATABASE_DEFAULT
+					AND
+					DB_NAME() LIKE F.FilterDb COLLATE DATABASE_DEFAULT
+					AND
+					isnull(O.ColName,'''') LIKE F.FilterColumn COLLATE DATABASE_DEFAULT
+
+			)
+
 			AND 
 			(
 				(
 					O.type in (''P'',''FN'',''IF'',''TF'',''V'',''TR'')
 					AND
-					(InSysComments = 1 OR IsInMasterSysComments = 1)
+					(InSysComments = 1 OR IsInMasterSysComments = 1 OR O.object_id < 0)
 				)
 				OR
 				O.type IN (''TRS'',''TRD'',''CCC'')
@@ -607,7 +743,7 @@ BEGIN
 	
 	select @StartId = max(id) from @FoundObjects
 	INSERT INTO @FoundObjects(DbName,ObjectName,ObjectSchema,ColName,ObjectId,IsEncrypted,ObjType,TypeDesc,IsInSysComments,IsInMasterComments)
-	exec @spsql @sql,N'@object sysname,@schema sysname,@column sysname,@NeedsDefinition bit',@FilterObject,@FilterSchema,@FilterColumn,@NeedsDefinition
+	exec @spsql @sql,N''
 	set @FoundCount = @@ROWCOUNT;
 	set @TotalFound += @FoundCount
 	
@@ -617,8 +753,8 @@ BEGIN
 	IF @Debug = 1
 		RAISERROR('	Found: %d objects (total = %d), Top: %d, LeftLimit: %d. StartId: %d',0,1,@FoundCount,@TotalFound,@top,@LeftLimit,@StartId) with nowait;
 
-	-- if is current db, and not wildcard
-	IF @Seq = 1 AND @IsWild = 0	and @FoundCount > 0
+	-- If user specified just 1 filter, without wildcards, and we found somehting, we assume it searching extactly object name!
+	IF @Seq = 1 AND @IsWild = 0	and @FoundCount > 0 AND @UserFilterCount = 1
 		break;
 
 	-- if top enabled and no more 
@@ -671,7 +807,6 @@ declare
 	,@NextLineIndex int
 	,@LineLength int
 	,@len int
-	,@i int
 	,@start int
 	,@IsEncrypted bit
 	,@IsDac int 
@@ -776,7 +911,7 @@ begin
 				SELECT 
 					@definition = definition 
 				FROM 
-					select *From sys.computed_columns C
+					sys.computed_columns C
 				WHERE
 					C.object_id = @ObjectID
 					AND
@@ -786,13 +921,16 @@ begin
 
 		-- get object definition!
 		IF @Debug = 1 RAISERROR('Getting object defintion',0,1) with nowait;
-		exec @spsql @sql,N'@ObjectId int,@definition nvarchar(max) OUTPUT',@ObjectId,@ObjectDefinition OUTPUT
+		exec @spsql @sql,N'@ObjectId int,@definition nvarchar(max) OUTPUT,@column sysname',@ObjectId,@ObjectDefinition OUTPUT,@ColName
 		IF @Debug = 1 RAISERROR('	Done!',0,1) with nowait;
 	end
 
 	if @ObjectDefinition is null  -- must exists some definition. Dont exists due some bug in prev code or permissions. Likely permission.
 	begin
-		raiserror('-- Cannot determine %s definition. Check your permissions or report bug!',0,1,@SchemaObject) with nowait;
+		RAISERROR('Definition not found for [%s].%s. Check permissions or try with DAC. ObjectId: %d',0,1,@DbName,@SchemaObject, @ObjectId) with nowait;
+		update @FoundObjects
+		set ObjectDefinition = '/* Cannot determine %s definition. Check your permissions or try with DAC if it is internal object */'
+		where id = @id
 		continue;
 	end
 	
