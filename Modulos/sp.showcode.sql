@@ -274,6 +274,11 @@ ALTER PROC sp_showcode (
 	,-- include descriptive headers. NOt used when mode is sp_helptext and xml.
 	 @headers bit = 1
 
+	,-- force @text being trated as a literal, with no filter or expression. In another words, you are escaping entire @text param, losing its powers
+	-- With that, proc will behaves almost sp_helptext, finding exact object name
+	-- Remember it is a complete literal. The text must follow rules of parsename function, that is it, [schema].[object]. Literal [ or ]  require use ", for example "[abc]" or ["abc"]  for inverse
+	@literal bit = 0
+
 	-- Enable some messages for debugging.
 	,@Debug bit = 0
 )
@@ -364,10 +369,11 @@ CREATE TABLE #sp_showcode_filters (
 	,FilterObject nvarchar(4000)
 	,FilterColumn nvarchar(4000)
 	,ExprReal nvarchar(max)
-	,IsWild as convert(bit,case when charindex('%',exprreal) > 0 then 1 else 0 end)
+	,IsWild bit
 );
 
-while @i <=	@TextLen 
+
+while @i <=	@TextLen and @literal = 0 
 begin
 	set @i += 1;
 	set @CurrentChar = substring(@text+',',@i,1)
@@ -375,13 +381,23 @@ begin
 
 	if @CurrentChar = N'\' and @NextChar in (N'\',N',')
 		select @buff += @NextChar, @i += 1;
+	else if @CurrentChar = '\' and @NextChar = '%' -- if found a \%, it is escaped. We handle this separated to avoid set @IsWild = 1
+		select @buff += N'\%', @i += 1
 	else if @CurrentChar = N',' 
 	begin
-	   insert into #sp_showcode_filters(expr) values(@buff)
-	   set @buff = '';
-	end else
+	   insert into #sp_showcode_filters(expr,IsWild) values(@buff,@IsWild)
+	   select @buff = '', @IsWild = 0
+	end else begin
+		
+		if @CurrentChar = '%' --never reaches if \%, because when \ is found, handle in else above.
+			set @IsWild = 1
+
 		set @buff += @CurrentChar
+	end
 end
+
+if @literal = 1
+	insert into #sp_showcode_filters(expr,IsWild) values (@text,0);
 
 
 update f 
@@ -397,7 +413,7 @@ from
 	cross apply (
 		SELECT 
 			IsNeg = CASE
-						WHEN left(expr,1) = '-' THEN 1
+						WHEN @literal = 0 AND left(expr,1) = '-' THEN 1
 						ELSE 0 
 					END
 			,ExprReal = CASE
@@ -410,10 +426,12 @@ from
 			BF.FilterDb
 			,BF.FilterSchema
 			,FilterObject = CASE 
+								WHEN @literal = 1 THEN FilterObject
 								WHEN ColSepIndex > 0 THEN LEFT(BF.FilterObject,ColSepIndex-1)
 								ELSE BF.FilterObject
 							END
-			,FilterColumn = CASE 
+			,FilterColumn = CASE
+								WHEN @literal = 1 THEN NULL
 								WHEN ColSepIndex > 0 THEN SUBSTRING(BF.FilterObject,ColSepIndex+1,4000)
 								ELSE '%'
 							END
@@ -421,7 +439,7 @@ from
 		   SELECT 
 				 FilterDb		= isnull(parsename(E.ExprReal,3),db_name())
 				,FilterSchema	= parsename(E.ExprReal,2)
-				,FilterObject	= parsename(E.ExprReal,1)
+				,FilterObject	= isnull(parsename(E.ExprReal,1),@text)
 				,ColSepIndex	= CHARINDEX('/',parsename(E.ExprReal,1))
 		) BF
 		
@@ -430,6 +448,10 @@ WHERE
 	PF.FilterObject IS NOT NULL
 
 SET @UserFilterCount = @@ROWCOUNT
+
+set @IsWild = 0
+if exists(select * from #sp_showcode_filters where IsWild = 1)
+	set @IsWild = 1
 
 
 -- if not explicit positive schema filter
@@ -444,7 +466,7 @@ end
 -- 
 UPDATE #sp_showcode_filters
 SET
-	FilterSchema = ISNULL(FilterSchema,'%')
+	FilterSchema = ISNULL(FilterSchema,CASE WHEN @literal = 1 THEN SCHEMA_NAME() ELSE '%' END)
 
 
 IF @Debug = 1
@@ -457,7 +479,7 @@ begin
 end
 
  -- If user specified only non wild filter!
-if @UserFilterCount = (select count(*) from #sp_showcode_filters where IsWild = 0 and expr is not null)
+if @UserFilterCount = (select count(*) from #sp_showcode_filters where IsWild = 0 and expr is not null) 
 begin
 	set @all = 1;
 	if @Debug  = 1 raiserror('Changed @all to 1 due user explicit multiple filter.',0,1) with nowait;
@@ -532,6 +554,9 @@ BEGIN
 	return;
 END
 
+
+
+
 DECLARE @DbList TABLE(Seq int, DbName sysname);
 
 INSERT INTO @DbList(Seq,DBName)
@@ -562,6 +587,7 @@ WHERE
 			and
 			f.IsNeg = 0
 	)
+
 
 IF @Debug = 1
 	SELECT * FROM @DbList
@@ -629,7 +655,7 @@ BEGIN
 		RAISERROR('Searching in db %s',0,1,@DbName) with nowait;
 
 	
-	set @sql = '
+	set @sql = N'
 		SELECT '+ISNULL('TOP('+CONVERT(varchar(10),@LeftLimit)+')','')+'
 			 DB_NAME()
 			,O.name 
@@ -705,24 +731,40 @@ BEGIN
 				) I
 			) A
 		WHERE
-			0 = (
+
+			'+CASE WHEN @literal = 1 THEN
+			'
+				EXISTS (
+					SELECT -- literal enabled 
+						*
+					FROM
+						#sp_showcode_filters F
+					WHERE
+						F.FilterObject = O.name COLLATE DATABASE_DEFAULT
+						AND
+						F.FilterSchema = S.name COLLATE DATABASE_DEFAULT
+				)
+			'  
+			ELSE 
+			'0 = (
 				SELECT 
 					max(convert(int,IsNeg))
 				FROM
 					#sp_showcode_filters F
 				WHERE
-					O.name LIKE F.FilterObject COLLATE DATABASE_DEFAULT
+					O.name LIKE F.FilterObject COLLATE DATABASE_DEFAULT ESCAPE ''\''
 					AND
-					S.name LIKE F.FilterSchema COLLATE DATABASE_DEFAULT
+					S.name LIKE F.FilterSchema COLLATE DATABASE_DEFAULT	ESCAPE ''\'' 
 					AND
-					DB_NAME() LIKE F.FilterDb COLLATE DATABASE_DEFAULT
+					DB_NAME() LIKE F.FilterDb COLLATE DATABASE_DEFAULT ESCAPE ''\''
 					AND
-					isnull(O.ColName,'''') LIKE F.FilterColumn COLLATE DATABASE_DEFAULT
+					isnull(O.ColName,'''') LIKE F.FilterColumn COLLATE DATABASE_DEFAULT ESCAPE ''\''
 
 			)
+			'
+			END+
 
-			AND 
-			(
+			'AND (
 				(
 					O.type in (''P'',''FN'',''IF'',''TF'',''V'',''TR'')
 					AND
@@ -754,7 +796,7 @@ BEGIN
 		RAISERROR('	Found: %d objects (total = %d), Top: %d, LeftLimit: %d. StartId: %d',0,1,@FoundCount,@TotalFound,@top,@LeftLimit,@StartId) with nowait;
 
 	-- If user specified just 1 filter, without wildcards, and we found somehting, we assume it searching extactly object name!
-	IF @Seq = 1 AND @IsWild = 0	and @FoundCount > 0 AND @UserFilterCount = 1
+	IF @Seq = 1 AND @IsWild = 0	and @FoundCount = 1 AND @UserFilterCount = 1
 		break;
 
 	-- if top enabled and no more 
