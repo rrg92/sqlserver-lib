@@ -279,6 +279,9 @@ ALTER PROC sp_showcode (
 	-- Remember it is a complete literal. The text must follow rules of parsename function, that is it, [schema].[object]. Literal [ or ]  require use ", for example "[abc]" or ["abc"]  for inverse
 	@literal bit = 0
 
+	,-- only return objects where definition match that text
+	@find nvarchar(max) = NULL 
+
 	-- Enable some messages for debugging.
 	,@Debug bit = 0
 )
@@ -975,6 +978,13 @@ begin
 		where id = @id
 		continue;
 	end
+
+	if @find is not null and @ObjectDefinition not like @find collate database_default escape '\'
+	begin
+		if @Debug = 1  RAISERROR('	Object [%s].%s ignored due to @find',0,1,@DbName,@SchemaObject) with nowait;
+		continue
+	end
+
 	
 	if @mode in ('xml','export','exportgo')
 	begin
@@ -1138,6 +1148,8 @@ begin
                                         NCHAR(11),N'?'),NCHAR(8),N'?'),NCHAR(7),N'?'),NCHAR(6),N'?'),NCHAR(5),N'?'),NCHAR(4),N'?'),NCHAR(3),N'?'),NCHAR(2),N'?'),NCHAR(1),N'?'),
                                     NCHAR(0),N'')
 		) A	
+	WHERE
+		ObjectDefinition IS NOT NULL
 
 	return;
 end
@@ -1177,6 +1189,8 @@ BEGIN
 			SELECT 
 				CrLf = NCHAR(13)+NCHAR(10)
 		) V
+	WHERE
+		F.ObjectDefinition IS NOT NULL
 END	
 
 
