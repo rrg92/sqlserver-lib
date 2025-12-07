@@ -1,4 +1,4 @@
-/*
+/*#info
 	# autor 
 		Rodrigo Ribeiro Gomes 
 
