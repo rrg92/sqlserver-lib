@@ -6,7 +6,7 @@
 > [Como eu fiz isso?](https://iatalk.ing/construindo-assistente-tsql-python-huggingface-gemini/)
 
 > [!IMPORTANT]
-> Se você está procurando de consultoria SQL para sua empresa, contrate a [Power Tuning](https://powertuning.com.br/consultoria-sql-server/)
+> Se você está procurando de consultoria SQL para sua empresa, contrate a [Power Tuning](https://powertuning.com.br/consultoria-sql-server/)  
 > Eu trabalho lá (Head de IA) e já fui Head de SQL Server lá e hoje tem um time gigante de DBAs que usam estas e outras ferramentas mais avançadas para ajudar a resolver e otimizar o banco!
 
 
