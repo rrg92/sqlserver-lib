@@ -2,11 +2,13 @@
 # SQL Server Lib
 
 > [!TIP]
-> **NOVIDADE**: Pesquise o melhor script para sua necessidade com IA aqui: https://huggingface.co/spaces/rrg92/sqlserver-lib-assistant  
-> Basicamente esse GitHub está indexado para que uma IA possa te ajudar a achar o que precisa!  
-> É só descrever o que precisa!  
-> Lembrando que isso é uma v1, então os resultados podem não ser precisos, e depende se o repo tem um script que tem relação com o assunto!  
-> Em breve faço um post explicando como tudo isso funciona!  
+> Pesquise nesse repo com IA no Hugging Face: https://huggingface.co/spaces/rrg92/sqlserver-lib-assistant  
+> [Como eu fiz isso?](https://iatalk.ing/construindo-assistente-tsql-python-huggingface-gemini/)
+
+> [!IMPORTANT]
+> Se você está procurando de consultoria SQL para sua empresa, contrate a [Power Tuning](https://powertuning.com.br/consultoria-sql-server/)
+> Eu trabalho lá (Head de IA) e já fui Head de SQL Server lá e hoje tem um time gigante de DBAs que usam estas e outras ferramentas mais avançadas para ajudar a resolver e otimizar o banco!
+
 
 Olá! Eu sou DBA SQL Server há mais de 10 anos e se tem uma coisa que me ajudou muito nessa jornada foi ter sempre um script pronto para me ajudar a investigar problemas!  
 Sem isso, seria muito mais difícil responder rápido a muitos incidentes, salas de crises e qualquer outro problema que tive com SQL Server.  
