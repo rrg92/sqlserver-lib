@@ -1,0 +1,1676 @@
+[
+  {
+    "path": "AI/Embeddings/spAddEmbs.AzureOpenai.sql",
+    "name": "spAddEmbs.AzureOpenai.sql",
+    "category": "AI",
+    "subcategory": "Embeddings"
+  },
+  {
+    "path": "AI/Embeddings/spAddEmbs.cohere.sql",
+    "name": "spAddEmbs.cohere.sql",
+    "category": "AI",
+    "subcategory": "Embeddings"
+  },
+  {
+    "path": "AI/Embeddings/spAddEmbs.openai.sql",
+    "name": "spAddEmbs.openai.sql",
+    "category": "AI",
+    "subcategory": "Embeddings"
+  },
+  {
+    "path": "AI/Embeddings/sp_AddEmbeddings.sql",
+    "name": "sp_AddEmbeddings.sql",
+    "category": "AI",
+    "subcategory": "Embeddings"
+  },
+  {
+    "path": "AI/ExternalModel/InstanceModels.sql",
+    "name": "InstanceModels.sql",
+    "category": "AI",
+    "subcategory": "ExternalModel"
+  },
+  {
+    "path": "AI/GenerateOpenaiEmbedding.sql25.sql",
+    "name": "GenerateOpenaiEmbedding.sql25.sql",
+    "category": "AI",
+    "subcategory": ""
+  },
+  {
+    "path": "AI/GradientDescedent.sql",
+    "name": "GradientDescedent.sql",
+    "category": "AI",
+    "subcategory": ""
+  },
+  {
+    "path": "AI/spDbaGPT.sql",
+    "name": "spDbaGPT.sql",
+    "category": "AI",
+    "subcategory": ""
+  },
+  {
+    "path": "AlwaysOn/DatabaseReplicaStates.sqlcmd.sql",
+    "name": "DatabaseReplicaStates.sqlcmd.sql",
+    "category": "AlwaysOn",
+    "subcategory": ""
+  },
+  {
+    "path": "AlwaysOn/GenerateRoutingURL.sql",
+    "name": "GenerateRoutingURL.sql",
+    "category": "AlwaysOn",
+    "subcategory": ""
+  },
+  {
+    "path": "Assembly/AssemblyBinariesPath.sql",
+    "name": "AssemblyBinariesPath.sql",
+    "category": "Assembly",
+    "subcategory": ""
+  },
+  {
+    "path": "Audit/AuditLogins.sql",
+    "name": "AuditLogins.sql",
+    "category": "Audit",
+    "subcategory": ""
+  },
+  {
+    "path": "Audit/GetAuditReport.sql",
+    "name": "GetAuditReport.sql",
+    "category": "Audit",
+    "subcategory": ""
+  },
+  {
+    "path": "Audit/QueryAuditFile.sql",
+    "name": "QueryAuditFile.sql",
+    "category": "Audit",
+    "subcategory": ""
+  },
+  {
+    "path": "Backups/AddLogicDevice.sql",
+    "name": "AddLogicDevice.sql",
+    "category": "Backups",
+    "subcategory": ""
+  },
+  {
+    "path": "Backups/Backup/BackupDetailed.sql",
+    "name": "BackupDetailed.sql",
+    "category": "Backups",
+    "subcategory": "Backup"
+  },
+  {
+    "path": "Backups/Backup/BackupVolumetria_PorPeriodo.sql",
+    "name": "BackupVolumetria_PorPeriodo.sql",
+    "category": "Backups",
+    "subcategory": "Backup"
+  },
+  {
+    "path": "Backups/Backup/Backup_DestinationInfo.sql",
+    "name": "Backup_DestinationInfo.sql",
+    "category": "Backups",
+    "subcategory": "Backup"
+  },
+  {
+    "path": "Backups/Backup/Backup_PolicyEstimator.sql",
+    "name": "Backup_PolicyEstimator.sql",
+    "category": "Backups",
+    "subcategory": "Backup"
+  },
+  {
+    "path": "Backups/Backup/Backuphistory.sql",
+    "name": "Backuphistory.sql",
+    "category": "Backups",
+    "subcategory": "Backup"
+  },
+  {
+    "path": "Backups/Backup/CheckBackupDoing.sql",
+    "name": "CheckBackupDoing.sql",
+    "category": "Backups",
+    "subcategory": "Backup"
+  },
+  {
+    "path": "Backups/Backup/CheckBackupLatency.sql",
+    "name": "CheckBackupLatency.sql",
+    "category": "Backups",
+    "subcategory": "Backup"
+  },
+  {
+    "path": "Backups/Backup/Filtrar-Ultimos-N-Backups-PorMes.sql",
+    "name": "Filtrar-Ultimos-N-Backups-PorMes.sql",
+    "category": "Backups",
+    "subcategory": "Backup"
+  },
+  {
+    "path": "Backups/Backup/FrequencyAnalyzer_v2.sql",
+    "name": "FrequencyAnalyzer_v2.sql",
+    "category": "Backups",
+    "subcategory": "Backup"
+  },
+  {
+    "path": "Backups/Backup/InfoBackups_Agg.sql",
+    "name": "InfoBackups_Agg.sql",
+    "category": "Backups",
+    "subcategory": "Backup"
+  },
+  {
+    "path": "Backups/Backup/LastBackupSize.sql",
+    "name": "LastBackupSize.sql",
+    "category": "Backups",
+    "subcategory": "Backup"
+  },
+  {
+    "path": "Backups/Backup/Timeline.sql",
+    "name": "Timeline.sql",
+    "category": "Backups",
+    "subcategory": "Backup"
+  },
+  {
+    "path": "Backups/Backup/olds/Media Tamanho Backup Semanal.sql",
+    "name": "Media Tamanho Backup Semanal.sql",
+    "category": "Backups",
+    "subcategory": "Backup/olds"
+  },
+  {
+    "path": "Backups/Backup/olds/Procedure Backup.temp.sql",
+    "name": "Procedure Backup.temp.sql",
+    "category": "Backups",
+    "subcategory": "Backup/olds"
+  },
+  {
+    "path": "Backups/Backup/olds/RelatorioBackup_PorPeriodo.sql",
+    "name": "RelatorioBackup_PorPeriodo.sql",
+    "category": "Backups",
+    "subcategory": "Backup/olds"
+  },
+  {
+    "path": "Backups/Backup/olds/TamLastBackups.sql",
+    "name": "TamLastBackups.sql",
+    "category": "Backups",
+    "subcategory": "Backup/olds"
+  },
+  {
+    "path": "Backups/Backup/olds/[RECENCIA_NOV2014]sp_BackupBanco.sql",
+    "name": "[RECENCIA_NOV2014]sp_BackupBanco.sql",
+    "category": "Backups",
+    "subcategory": "Backup/olds"
+  },
+  {
+    "path": "Backups/Backup/olds/backup_log_sql2000.sql",
+    "name": "backup_log_sql2000.sql",
+    "category": "Backups",
+    "subcategory": "Backup/olds"
+  },
+  {
+    "path": "Backups/Backup/olds/lista de backups recentes.sql",
+    "name": "lista de backups recentes.sql",
+    "category": "Backups",
+    "subcategory": "Backup/olds"
+  },
+  {
+    "path": "Backups/Backup/olds/relatorio_backup_lastbackups.sql",
+    "name": "relatorio_backup_lastbackups.sql",
+    "category": "Backups",
+    "subcategory": "Backup/olds"
+  },
+  {
+    "path": "Backups/Backup/olds/relatorio_backup_simple.sql",
+    "name": "relatorio_backup_simple.sql",
+    "category": "Backups",
+    "subcategory": "Backup/olds"
+  },
+  {
+    "path": "Backups/Backup/relatorio_backup_lastbackups.sql",
+    "name": "relatorio_backup_lastbackups.sql",
+    "category": "Backups",
+    "subcategory": "Backup"
+  },
+  {
+    "path": "Backups/Backup/sp_DoBackup.sql",
+    "name": "sp_DoBackup.sql",
+    "category": "Backups",
+    "subcategory": "Backup"
+  },
+  {
+    "path": "Backups/Backup/valid_backup_schedule.sql",
+    "name": "valid_backup_schedule.sql",
+    "category": "Backups",
+    "subcategory": "Backup"
+  },
+  {
+    "path": "Backups/Restore/Data_Ultimo_Restore.sql",
+    "name": "Data_Ultimo_Restore.sql",
+    "category": "Backups",
+    "subcategory": "Restore"
+  },
+  {
+    "path": "Backups/Restore/InfoUltimoRestoreEx.sql",
+    "name": "InfoUltimoRestoreEx.sql",
+    "category": "Backups",
+    "subcategory": "Restore"
+  },
+  {
+    "path": "Backups/Restore/LastRestores.sql",
+    "name": "LastRestores.sql",
+    "category": "Backups",
+    "subcategory": "Restore"
+  },
+  {
+    "path": "Backups/Restore/MasterManual/CreateLogins.sql",
+    "name": "CreateLogins.sql",
+    "category": "Backups",
+    "subcategory": "Restore/MasterManual"
+  },
+  {
+    "path": "Backups/Restore/RestoreAvancado.sql",
+    "name": "RestoreAvancado.sql",
+    "category": "Backups",
+    "subcategory": "Restore"
+  },
+  {
+    "path": "Backups/Restore/RestoreFrequency.sql",
+    "name": "RestoreFrequency.sql",
+    "category": "Backups",
+    "subcategory": "Restore"
+  },
+  {
+    "path": "Backups/Restore/RestoreFrequencyWithSizings.sql",
+    "name": "RestoreFrequencyWithSizings.sql",
+    "category": "Backups",
+    "subcategory": "Restore"
+  },
+  {
+    "path": "Backups/Restore/RestoreReport.sql",
+    "name": "RestoreReport.sql",
+    "category": "Backups",
+    "subcategory": "Restore"
+  },
+  {
+    "path": "Backups/Restore/RestoreSequence-v2.sql",
+    "name": "RestoreSequence-v2.sql",
+    "category": "Backups",
+    "subcategory": "Restore"
+  },
+  {
+    "path": "Backups/Restore/RestoreSequence.sql",
+    "name": "RestoreSequence.sql",
+    "category": "Backups",
+    "subcategory": "Restore"
+  },
+  {
+    "path": "Backups/Restore/prcRestauraBanco.sql",
+    "name": "prcRestauraBanco.sql",
+    "category": "Backups",
+    "subcategory": "Restore"
+  },
+  {
+    "path": "CDC/ValidarCdcRoleMembers.sql",
+    "name": "ValidarCdcRoleMembers.sql",
+    "category": "CDC",
+    "subcategory": ""
+  },
+  {
+    "path": "CDC/sp_multi_replcmds.sql",
+    "name": "sp_multi_replcmds.sql",
+    "category": "CDC",
+    "subcategory": ""
+  },
+  {
+    "path": "CLR/SqlLabClr.create.sql",
+    "name": "SqlLabClr.create.sql",
+    "category": "CLR",
+    "subcategory": ""
+  },
+  {
+    "path": "CMS/CMSProperties/DynamicPivotProperties.sql",
+    "name": "DynamicPivotProperties.sql",
+    "category": "CMS",
+    "subcategory": "CMSProperties"
+  },
+  {
+    "path": "CMS/CMSProperties/ExplorerServerPath.sql",
+    "name": "ExplorerServerPath.sql",
+    "category": "CMS",
+    "subcategory": "CMSProperties"
+  },
+  {
+    "path": "CMS/CMSProperties/QueryProperties.sql",
+    "name": "QueryProperties.sql",
+    "category": "CMS",
+    "subcategory": "CMSProperties"
+  },
+  {
+    "path": "CMS/CMSProperties/cmsprops.CMSProperties.tab.sql",
+    "name": "cmsprops.CMSProperties.tab.sql",
+    "category": "CMS",
+    "subcategory": "CMSProperties"
+  },
+  {
+    "path": "CMS/CMSProperties/cmsprops.cpInstanceProperties.vw.sql",
+    "name": "cmsprops.cpInstanceProperties.vw.sql",
+    "category": "CMS",
+    "subcategory": "CMSProperties"
+  },
+  {
+    "path": "CMS/CMSProperties/cmsprops.prcGetInstance.proc.sql",
+    "name": "cmsprops.prcGetInstance.proc.sql",
+    "category": "CMS",
+    "subcategory": "CMSProperties"
+  },
+  {
+    "path": "CMS/CMSProperties/cmsprops.prcSetProperty.sql",
+    "name": "cmsprops.prcSetProperty.sql",
+    "category": "CMS",
+    "subcategory": "CMSProperties"
+  },
+  {
+    "path": "CMS/CMSProperties/cmsprops.sch.sql",
+    "name": "cmsprops.sch.sql",
+    "category": "CMS",
+    "subcategory": "CMSProperties"
+  },
+  {
+    "path": "CMS/CMSProperties/cpFullInstanceProperties.vw.sql",
+    "name": "cpFullInstanceProperties.vw.sql",
+    "category": "CMS",
+    "subcategory": "CMSProperties"
+  },
+  {
+    "path": "CMS/CMSProperties/cpInstances.vw.sql",
+    "name": "cpInstances.vw.sql",
+    "category": "CMS",
+    "subcategory": "CMSProperties"
+  },
+  {
+    "path": "CMS/CMSProperties/dbo.FullServerPath.vw.sql",
+    "name": "dbo.FullServerPath.vw.sql",
+    "category": "CMS",
+    "subcategory": "CMSProperties"
+  },
+  {
+    "path": "CMS/ConcederAcesso_CMS.sql",
+    "name": "ConcederAcesso_CMS.sql",
+    "category": "CMS",
+    "subcategory": ""
+  },
+  {
+    "path": "CPU/CPUActivityEx.sql",
+    "name": "CPUActivityEx.sql",
+    "category": "CPU",
+    "subcategory": ""
+  },
+  {
+    "path": "CPU/CPUDelta.sql",
+    "name": "CPUDelta.sql",
+    "category": "CPU",
+    "subcategory": ""
+  },
+  {
+    "path": "CPU/CPUDeltaEx.sql",
+    "name": "CPUDeltaEx.sql",
+    "category": "CPU",
+    "subcategory": ""
+  },
+  {
+    "path": "CPU/CPUDelta_Custom.sql",
+    "name": "CPUDelta_Custom.sql",
+    "category": "CPU",
+    "subcategory": ""
+  },
+  {
+    "path": "CPU/CPUDelta_GroupByObject.sql",
+    "name": "CPUDelta_GroupByObject.sql",
+    "category": "CPU",
+    "subcategory": ""
+  },
+  {
+    "path": "CPU/CPUTest-Simple.sql",
+    "name": "CPUTest-Simple.sql",
+    "category": "CPU",
+    "subcategory": ""
+  },
+  {
+    "path": "CPU/CPUTime_Schedulers.sql",
+    "name": "CPUTime_Schedulers.sql",
+    "category": "CPU",
+    "subcategory": ""
+  },
+  {
+    "path": "CPU/CPU_usadasporsessao.sql",
+    "name": "CPU_usadasporsessao.sql",
+    "category": "CPU",
+    "subcategory": ""
+  },
+  {
+    "path": "CPU/CurrentTasks_VsRunnable_Aggregado.sql",
+    "name": "CurrentTasks_VsRunnable_Aggregado.sql",
+    "category": "CPU",
+    "subcategory": ""
+  },
+  {
+    "path": "CPU/NativeCompiledTest.sql",
+    "name": "NativeCompiledTest.sql",
+    "category": "CPU",
+    "subcategory": ""
+  },
+  {
+    "path": "CPU/QuerStatsDelta.sql",
+    "name": "QuerStatsDelta.sql",
+    "category": "CPU",
+    "subcategory": ""
+  },
+  {
+    "path": "CPU/RequestDelta.sql",
+    "name": "RequestDelta.sql",
+    "category": "CPU",
+    "subcategory": ""
+  },
+  {
+    "path": "CPU/TasksActivity.sql",
+    "name": "TasksActivity.sql",
+    "category": "CPU",
+    "subcategory": ""
+  },
+  {
+    "path": "CPU/ThreadScheduleInfo.sql",
+    "name": "ThreadScheduleInfo.sql",
+    "category": "CPU",
+    "subcategory": ""
+  },
+  {
+    "path": "CPU/TryCalcCPU_MultipleThreads.sql",
+    "name": "TryCalcCPU_MultipleThreads.sql",
+    "category": "CPU",
+    "subcategory": ""
+  },
+  {
+    "path": "CPU/Ver Schedulers Possivel CPU Bottlenecks.sql",
+    "name": "Ver Schedulers Possivel CPU Bottlenecks.sql",
+    "category": "CPU",
+    "subcategory": ""
+  },
+  {
+    "path": "CPU/threads.sql",
+    "name": "threads.sql",
+    "category": "CPU",
+    "subcategory": ""
+  },
+  {
+    "path": "Checkdb/PerTableCheck.sql",
+    "name": "PerTableCheck.sql",
+    "category": "Checkdb",
+    "subcategory": ""
+  },
+  {
+    "path": "Collations/CollationAsciiTable.sql",
+    "name": "CollationAsciiTable.sql",
+    "category": "Collations",
+    "subcategory": ""
+  },
+  {
+    "path": "Collations/CollationPrecedence_CollationSensitity_Explained.sql",
+    "name": "CollationPrecedence_CollationSensitity_Explained.sql",
+    "category": "Collations",
+    "subcategory": ""
+  },
+  {
+    "path": "Collations/PrefCollations_CodePage.sql",
+    "name": "PrefCollations_CodePage.sql",
+    "category": "Collations",
+    "subcategory": ""
+  },
+  {
+    "path": "Collations/collate_playing_DrawLibrarySQL.sql",
+    "name": "collate_playing_DrawLibrarySQL.sql",
+    "category": "Collations",
+    "subcategory": ""
+  },
+  {
+    "path": "Colunas/FirstColText.sql",
+    "name": "FirstColText.sql",
+    "category": "Colunas",
+    "subcategory": ""
+  },
+  {
+    "path": "Constraints/Foreign Keys/DescobrirFK-Sem-Indice.sql",
+    "name": "DescobrirFK-Sem-Indice.sql",
+    "category": "Constraints",
+    "subcategory": "Foreign Keys"
+  },
+  {
+    "path": "Constraints/Foreign Keys/GEraCreateFk-AllFks.sql",
+    "name": "GEraCreateFk-AllFks.sql",
+    "category": "Constraints",
+    "subcategory": "Foreign Keys"
+  },
+  {
+    "path": "Constraints/Foreign Keys/Gerar Creates e Drops de Fks.sql",
+    "name": "Gerar Creates e Drops de Fks.sql",
+    "category": "Constraints",
+    "subcategory": "Foreign Keys"
+  },
+  {
+    "path": "Constraints/Foreign Keys/Informacoes de FKS.sql",
+    "name": "Informacoes de FKS.sql",
+    "category": "Constraints",
+    "subcategory": "Foreign Keys"
+  },
+  {
+    "path": "Constraints/Foreign Keys/Tabelas Filhas.sql",
+    "name": "Tabelas Filhas.sql",
+    "category": "Constraints",
+    "subcategory": "Foreign Keys"
+  },
+  {
+    "path": "Constraints/Foreign Keys/fnGeraCreateFK.sql",
+    "name": "fnGeraCreateFK.sql",
+    "category": "Constraints",
+    "subcategory": "Foreign Keys"
+  },
+  {
+    "path": "Criptografia/Certificates/CopyCertificateBinary.sql",
+    "name": "CopyCertificateBinary.sql",
+    "category": "Criptografia",
+    "subcategory": "Certificates"
+  },
+  {
+    "path": "Criptografia/demo-DesmistificandoCriptografia.sql",
+    "name": "demo-DesmistificandoCriptografia.sql",
+    "category": "Criptografia",
+    "subcategory": ""
+  },
+  {
+    "path": "Database/EstimarUltimoUsoBase.sql",
+    "name": "EstimarUltimoUsoBase.sql",
+    "category": "Database",
+    "subcategory": ""
+  },
+  {
+    "path": "Database/LastGoodCheckDB.sql",
+    "name": "LastGoodCheckDB.sql",
+    "category": "Database",
+    "subcategory": ""
+  },
+  {
+    "path": "Database/SizePerDatabase.sql",
+    "name": "SizePerDatabase.sql",
+    "category": "Database",
+    "subcategory": ""
+  },
+  {
+    "path": "Database/TamanhoTodosBancos_2000+.sql",
+    "name": "TamanhoTodosBancos_2000+.sql",
+    "category": "Database",
+    "subcategory": ""
+  },
+  {
+    "path": "Database/UsageSizeInfo.sql",
+    "name": "UsageSizeInfo.sql",
+    "category": "Database",
+    "subcategory": ""
+  },
+  {
+    "path": "DatabaseMail/DatabaseMail_CriarProfile_DBA.sql",
+    "name": "DatabaseMail_CriarProfile_DBA.sql",
+    "category": "DatabaseMail",
+    "subcategory": ""
+  },
+  {
+    "path": "DatabaseMail/DatabaseMail_TestEmail.sql",
+    "name": "DatabaseMail_TestEmail.sql",
+    "category": "DatabaseMail",
+    "subcategory": ""
+  },
+  {
+    "path": "Dumps/DumpTrigger.sql",
+    "name": "DumpTrigger.sql",
+    "category": "Dumps",
+    "subcategory": ""
+  },
+  {
+    "path": "Dumps/LastDumps.sql",
+    "name": "LastDumps.sql",
+    "category": "Dumps",
+    "subcategory": ""
+  },
+  {
+    "path": "Endpoints/endpoints.sql",
+    "name": "endpoints.sql",
+    "category": "Endpoints",
+    "subcategory": ""
+  },
+  {
+    "path": "ExtendedEvents/Academic/IoRequests/event_create.sql",
+    "name": "event_create.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "Academic/IoRequests"
+  },
+  {
+    "path": "ExtendedEvents/Academic/IoRequests/query_RingBufferTargett.sql",
+    "name": "query_RingBufferTargett.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "Academic/IoRequests"
+  },
+  {
+    "path": "ExtendedEvents/AlwaysOn-Troub/SessionSetup.sql",
+    "name": "SessionSetup.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "AlwaysOn-Troub"
+  },
+  {
+    "path": "ExtendedEvents/Atividade/event_create.sql",
+    "name": "event_create.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "Atividade"
+  },
+  {
+    "path": "ExtendedEvents/Atividade/query_ring_buffer_NoTempdB.sql",
+    "name": "query_ring_buffer_NoTempdB.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "Atividade"
+  },
+  {
+    "path": "ExtendedEvents/Atividade_Database/DatabaseActivityAndErrors.sql",
+    "name": "DatabaseActivityAndErrors.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "Atividade_Database"
+  },
+  {
+    "path": "ExtendedEvents/Atividade_Database/DatabaseActivityAndErrors.xe.sql",
+    "name": "DatabaseActivityAndErrors.xe.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "Atividade_Database"
+  },
+  {
+    "path": "ExtendedEvents/AzureSqlDatabase/QueryActivity/EventQuery.sql",
+    "name": "EventQuery.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "AzureSqlDatabase/QueryActivity"
+  },
+  {
+    "path": "ExtendedEvents/CapturarErros/event_create.sql",
+    "name": "event_create.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "CapturarErros"
+  },
+  {
+    "path": "ExtendedEvents/CapturarErros/query_RingBufferTargett.sql",
+    "name": "query_RingBufferTargett.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "CapturarErros"
+  },
+  {
+    "path": "ExtendedEvents/Checkpoints/event_create.sql",
+    "name": "event_create.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "Checkpoints"
+  },
+  {
+    "path": "ExtendedEvents/Checkpoints/query_RingBufferTargett.sql",
+    "name": "query_RingBufferTargett.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "Checkpoints"
+  },
+  {
+    "path": "ExtendedEvents/DBA_ActivityTrace/EventCreate.sql",
+    "name": "EventCreate.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "DBA_ActivityTrace"
+  },
+  {
+    "path": "ExtendedEvents/DBA_ModuleTrace/EventCreate.sql",
+    "name": "EventCreate.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "DBA_ModuleTrace"
+  },
+  {
+    "path": "ExtendedEvents/DebuggingBreaks/event_create.sql",
+    "name": "event_create.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "DebuggingBreaks"
+  },
+  {
+    "path": "ExtendedEvents/ImportXEventFile.sql",
+    "name": "ImportXEventFile.sql",
+    "category": "ExtendedEvents",
+    "subcategory": ""
+  },
+  {
+    "path": "ExtendedEvents/LoadChunked.sql",
+    "name": "LoadChunked.sql",
+    "category": "ExtendedEvents",
+    "subcategory": ""
+  },
+  {
+    "path": "ExtendedEvents/LogActivity/LogActivity.sessiondef.sql",
+    "name": "LogActivity.sessiondef.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "LogActivity"
+  },
+  {
+    "path": "ExtendedEvents/OnnxEvents/event_create.sql",
+    "name": "event_create.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "OnnxEvents"
+  },
+  {
+    "path": "ExtendedEvents/SessionWaits/SessionWaits.sessiondef.sql",
+    "name": "SessionWaits.sessiondef.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "SessionWaits"
+  },
+  {
+    "path": "ExtendedEvents/SessionWaits/query_ring_buffer.sql",
+    "name": "query_ring_buffer.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "SessionWaits"
+  },
+  {
+    "path": "ExtendedEvents/TestImportXeEventFile.sql",
+    "name": "TestImportXeEventFile.sql",
+    "category": "ExtendedEvents",
+    "subcategory": ""
+  },
+  {
+    "path": "ExtendedEvents/Troub_Login Failures/create_Event_session.sql",
+    "name": "create_Event_session.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "Troub_Login Failures"
+  },
+  {
+    "path": "ExtendedEvents/Troub_Login Failures/query_RingBufferTargett.sql",
+    "name": "query_RingBufferTargett.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "Troub_Login Failures"
+  },
+  {
+    "path": "ExtendedEvents/WaitsPerfomance/WaitPerfomance.qry.sql",
+    "name": "WaitPerfomance.qry.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "WaitsPerfomance"
+  },
+  {
+    "path": "ExtendedEvents/WaitsPerfomance/WaitPerfomance.xe.sql",
+    "name": "WaitPerfomance.xe.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "WaitsPerfomance"
+  },
+  {
+    "path": "ExtendedEvents/XEObjectsInfo.sql",
+    "name": "XEObjectsInfo.sql",
+    "category": "ExtendedEvents",
+    "subcategory": ""
+  },
+  {
+    "path": "ExtendedEvents/XE_CollectProcedureResponseTimes/QueryData.sql",
+    "name": "QueryData.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "XE_CollectProcedureResponseTimes"
+  },
+  {
+    "path": "ExtendedEvents/XE_CollectProcedureResponseTimes/XE_CollectProcedureResponseTime.sql",
+    "name": "XE_CollectProcedureResponseTime.sql",
+    "category": "ExtendedEvents",
+    "subcategory": "XE_CollectProcedureResponseTimes"
+  },
+  {
+    "path": "ExtendedEvents/spXeCpuAnalyzer.sql",
+    "name": "spXeCpuAnalyzer.sql",
+    "category": "ExtendedEvents",
+    "subcategory": ""
+  },
+  {
+    "path": "Index/ColunasPosicaoIndex.sql",
+    "name": "ColunasPosicaoIndex.sql",
+    "category": "Index",
+    "subcategory": ""
+  },
+  {
+    "path": "Index/Compression.sql",
+    "name": "Compression.sql",
+    "category": "Index",
+    "subcategory": ""
+  },
+  {
+    "path": "Index/EstimateIndexCreation.sql",
+    "name": "EstimateIndexCreation.sql",
+    "category": "Index",
+    "subcategory": ""
+  },
+  {
+    "path": "Index/Fulltext/TablePopulationProgress.sql",
+    "name": "TablePopulationProgress.sql",
+    "category": "Index",
+    "subcategory": "Fulltext"
+  },
+  {
+    "path": "Index/Fulltext/population_ativo.sql",
+    "name": "population_ativo.sql",
+    "category": "Index",
+    "subcategory": "Fulltext"
+  },
+  {
+    "path": "Index/GenerateCreateIndex.sql",
+    "name": "GenerateCreateIndex.sql",
+    "category": "Index",
+    "subcategory": ""
+  },
+  {
+    "path": "Index/InfoFragmentacao.sql",
+    "name": "InfoFragmentacao.sql",
+    "category": "Index",
+    "subcategory": ""
+  },
+  {
+    "path": "Index/Normal/Antigo/[FN] [A-23112011] dbo.fnGeraCreateIndice.sql",
+    "name": "[FN] [A-23112011] dbo.fnGeraCreateIndice.sql",
+    "category": "Index",
+    "subcategory": "Normal/Antigo"
+  },
+  {
+    "path": "Index/Normal/Fisico e Leituras.sql",
+    "name": "Fisico e Leituras.sql",
+    "category": "Index",
+    "subcategory": "Normal"
+  },
+  {
+    "path": "Index/Normal/MoverHeapFilegroup.sql",
+    "name": "MoverHeapFilegroup.sql",
+    "category": "Index",
+    "subcategory": "Normal"
+  },
+  {
+    "path": "Index/Normal/TodosIndicesDesabilitadosInstancia.sql",
+    "name": "TodosIndicesDesabilitadosInstancia.sql",
+    "category": "Index",
+    "subcategory": "Normal"
+  },
+  {
+    "path": "Index/Normal/TodosIndicesInstancia.sql",
+    "name": "TodosIndicesInstancia.sql",
+    "category": "Index",
+    "subcategory": "Normal"
+  },
+  {
+    "path": "Index/Normal/fn.fnGeraCreateIndice2005.sql",
+    "name": "fn.fnGeraCreateIndice2005.sql",
+    "category": "Index",
+    "subcategory": "Normal"
+  },
+  {
+    "path": "Index/Normal/fn.fnGeraCreateIndice2008.sql",
+    "name": "fn.fnGeraCreateIndice2008.sql",
+    "category": "Index",
+    "subcategory": "Normal"
+  },
+  {
+    "path": "Index/Normal/sp.Util_MissingIndexes.sql",
+    "name": "sp.Util_MissingIndexes.sql",
+    "category": "Index",
+    "subcategory": "Normal"
+  },
+  {
+    "path": "Index/Normal/sp_helpindex2_20051/sp_helpindex2_2005.sql",
+    "name": "sp_helpindex2_2005.sql",
+    "category": "Index",
+    "subcategory": "Normal/sp_helpindex2_20051"
+  },
+  {
+    "path": "Index/Normal/sp_helpindex2_20081/sp_helpindex2_2008.sql",
+    "name": "sp_helpindex2_2008.sql",
+    "category": "Index",
+    "subcategory": "Normal/sp_helpindex2_20081"
+  },
+  {
+    "path": "Index/TableIndexesDuplicated.sql",
+    "name": "TableIndexesDuplicated.sql",
+    "category": "Index",
+    "subcategory": ""
+  },
+  {
+    "path": "Index/sp.prcColetarInfoFragmentacao.sql",
+    "name": "sp.prcColetarInfoFragmentacao.sql",
+    "category": "Index",
+    "subcategory": ""
+  },
+  {
+    "path": "Index/sp.utest.proc_ColetarInfoFragmentacao.sql",
+    "name": "sp.utest.proc_ColetarInfoFragmentacao.sql",
+    "category": "Index",
+    "subcategory": ""
+  },
+  {
+    "path": "Index/sp_skindex.sql",
+    "name": "sp_skindex.sql",
+    "category": "Index",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/ActivityStatistics.sql",
+    "name": "ActivityStatistics.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/Atividade.sql",
+    "name": "Atividade.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/Caches/CachePressureLimit.sql",
+    "name": "CachePressureLimit.sql",
+    "category": "Instance",
+    "subcategory": "Caches"
+  },
+  {
+    "path": "Instance/Caches/PlanCache-Attributes-AutoPivot.sql",
+    "name": "PlanCache-Attributes-AutoPivot.sql",
+    "category": "Instance",
+    "subcategory": "Caches"
+  },
+  {
+    "path": "Instance/Caches/PlanCache-HashTable-Stores.sql",
+    "name": "PlanCache-HashTable-Stores.sql",
+    "category": "Instance",
+    "subcategory": "Caches"
+  },
+  {
+    "path": "Instance/Caches/PlanCache_Info.sql",
+    "name": "PlanCache_Info.sql",
+    "category": "Instance",
+    "subcategory": "Caches"
+  },
+  {
+    "path": "Instance/Caches/Table-BufferPool-PageCount.sql",
+    "name": "Table-BufferPool-PageCount.sql",
+    "category": "Instance",
+    "subcategory": "Caches"
+  },
+  {
+    "path": "Instance/CollectWaitSession.sql",
+    "name": "CollectWaitSession.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/Disco/sys.io_virtual_file_stats.sql",
+    "name": "sys.io_virtual_file_stats.sql",
+    "category": "Instance",
+    "subcategory": "Disco"
+  },
+  {
+    "path": "Instance/Estatisticas de execucao de querys - comparacao.sql",
+    "name": "Estatisticas de execucao de querys - comparacao.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/Estatisticas de execucao de querys.sql",
+    "name": "Estatisticas de execucao de querys.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/FileStats.sql",
+    "name": "FileStats.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/GetResponseStats_Adhoc.sql",
+    "name": "GetResponseStats_Adhoc.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/IOPendings.sql",
+    "name": "IOPendings.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/InstanceInfoSimple.sql",
+    "name": "InstanceInfoSimple.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/Locks/DemoLocks.sql",
+    "name": "DemoLocks.sql",
+    "category": "Instance",
+    "subcategory": "Locks"
+  },
+  {
+    "path": "Instance/Locks/Locks-Objeto.sql",
+    "name": "Locks-Objeto.sql",
+    "category": "Instance",
+    "subcategory": "Locks"
+  },
+  {
+    "path": "Instance/Locks/VerLocksSessao.sql",
+    "name": "VerLocksSessao.sql",
+    "category": "Instance",
+    "subcategory": "Locks"
+  },
+  {
+    "path": "Instance/Locks/VerLocks_PorOrigem_FullAlloc.sql",
+    "name": "VerLocks_PorOrigem_FullAlloc.sql",
+    "category": "Instance",
+    "subcategory": "Locks"
+  },
+  {
+    "path": "Instance/Locks/VerLocks_PorOrigem_MultiServer.sql",
+    "name": "VerLocks_PorOrigem_MultiServer.sql",
+    "category": "Instance",
+    "subcategory": "Locks"
+  },
+  {
+    "path": "Instance/MacroInstanceInfo.sql",
+    "name": "MacroInstanceInfo.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/Matar sessoes status diferente running.sql",
+    "name": "Matar sessoes status diferente running.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/Memoria/Clerks_v2012.sql",
+    "name": "Clerks_v2012.sql",
+    "category": "Instance",
+    "subcategory": "Memoria"
+  },
+  {
+    "path": "Instance/Memoria/InfoMemoryObjects.sql",
+    "name": "InfoMemoryObjects.sql",
+    "category": "Instance",
+    "subcategory": "Memoria"
+  },
+  {
+    "path": "Instance/Memoria/MemoUsedEx_CrossVersion.sql",
+    "name": "MemoUsedEx_CrossVersion.sql",
+    "category": "Instance",
+    "subcategory": "Memoria"
+  },
+  {
+    "path": "Instance/Memoria/MemoryClerkInfos.sql",
+    "name": "MemoryClerkInfos.sql",
+    "category": "Instance",
+    "subcategory": "Memoria"
+  },
+  {
+    "path": "Instance/Memoria/MemoryEx.sql",
+    "name": "MemoryEx.sql",
+    "category": "Instance",
+    "subcategory": "Memoria"
+  },
+  {
+    "path": "Instance/Memoria/MemoryUsageVisual.sql",
+    "name": "MemoryUsageVisual.sql",
+    "category": "Instance",
+    "subcategory": "Memoria"
+  },
+  {
+    "path": "Instance/Memoria/VAS-Page-Ranges.sql",
+    "name": "VAS-Page-Ranges.sql",
+    "category": "Instance",
+    "subcategory": "Memoria"
+  },
+  {
+    "path": "Instance/Nome e versao do servidor.sql",
+    "name": "Nome e versao do servidor.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/Sessions_MemoryGrants_WaitingsAgg.sql",
+    "name": "Sessions_MemoryGrants_WaitingsAgg.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/Sessoes/SessoesSleeping_ComTranAtiva.sql",
+    "name": "SessoesSleeping_ComTranAtiva.sql",
+    "category": "Instance",
+    "subcategory": "Sessoes"
+  },
+  {
+    "path": "Instance/Tasks/TaskBlockingChain.sql",
+    "name": "TaskBlockingChain.sql",
+    "category": "Instance",
+    "subcategory": "Tasks"
+  },
+  {
+    "path": "Instance/Transacoes/Tran-Abertas.sql",
+    "name": "Tran-Abertas.sql",
+    "category": "Instance",
+    "subcategory": "Transacoes"
+  },
+  {
+    "path": "Instance/Transacoes/TranLogUsage.sql",
+    "name": "TranLogUsage.sql",
+    "category": "Instance",
+    "subcategory": "Transacoes"
+  },
+  {
+    "path": "Instance/WaitsDelta.sql",
+    "name": "WaitsDelta.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/WaitsPerSessions.sql",
+    "name": "WaitsPerSessions.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/WhoIsActive_BlockChain.sql",
+    "name": "WhoIsActive_BlockChain.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/coleta_OpenSessions_Sample.sql",
+    "name": "coleta_OpenSessions_Sample.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/sp.ColetarInfoWait.sql",
+    "name": "sp.ColetarInfoWait.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/sp.querycpu-html.sql",
+    "name": "sp.querycpu-html.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/sp_GetResponseStats.sql",
+    "name": "sp_GetResponseStats.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/sp_Kill.sql",
+    "name": "sp_Kill.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Instance/top_waits.sql",
+    "name": "top_waits.sql",
+    "category": "Instance",
+    "subcategory": ""
+  },
+  {
+    "path": "Jobs/JobHistoryStatistics.sql",
+    "name": "JobHistoryStatistics.sql",
+    "category": "Jobs",
+    "subcategory": ""
+  },
+  {
+    "path": "Jobs/JobsXProxy.sql",
+    "name": "JobsXProxy.sql",
+    "category": "Jobs",
+    "subcategory": ""
+  },
+  {
+    "path": "Jobs/obter_ultimas_falhas.sql",
+    "name": "obter_ultimas_falhas.sql",
+    "category": "Jobs",
+    "subcategory": ""
+  },
+  {
+    "path": "LinkedServers/AddMappedLogin.sql",
+    "name": "AddMappedLogin.sql",
+    "category": "LinkedServers",
+    "subcategory": ""
+  },
+  {
+    "path": "LinkedServers/Change_LinkedLogin_Mapping.sql",
+    "name": "Change_LinkedLogin_Mapping.sql",
+    "category": "LinkedServers",
+    "subcategory": ""
+  },
+  {
+    "path": "LoginsUsers/CriarUsersAdvanced.sql",
+    "name": "CriarUsersAdvanced.sql",
+    "category": "LoginsUsers",
+    "subcategory": ""
+  },
+  {
+    "path": "LoginsUsers/GenerateHelpRevLoginForDatabases.sql",
+    "name": "GenerateHelpRevLoginForDatabases.sql",
+    "category": "LoginsUsers",
+    "subcategory": ""
+  },
+  {
+    "path": "LoginsUsers/sp_help_revlogin_2000_2005.sql",
+    "name": "sp_help_revlogin_2000_2005.sql",
+    "category": "LoginsUsers",
+    "subcategory": ""
+  },
+  {
+    "path": "Mirroring/CheckMirrorEnabled_CrossVersion.sql",
+    "name": "CheckMirrorEnabled_CrossVersion.sql",
+    "category": "Mirroring",
+    "subcategory": ""
+  },
+  {
+    "path": "Misc/DbccHelpUndoc.sql",
+    "name": "DbccHelpUndoc.sql",
+    "category": "Misc",
+    "subcategory": ""
+  },
+  {
+    "path": "Misc/Fuckill.sql",
+    "name": "Fuckill.sql",
+    "category": "Misc",
+    "subcategory": ""
+  },
+  {
+    "path": "Misc/HighQueryCompilationTime.sql",
+    "name": "HighQueryCompilationTime.sql",
+    "category": "Misc",
+    "subcategory": ""
+  },
+  {
+    "path": "Misc/I-Like-Memory.sql",
+    "name": "I-Like-Memory.sql",
+    "category": "Misc",
+    "subcategory": ""
+  },
+  {
+    "path": "Misc/LoadWordpressPosts.sql",
+    "name": "LoadWordpressPosts.sql",
+    "category": "Misc",
+    "subcategory": ""
+  },
+  {
+    "path": "Misc/NotIn-Null.sql",
+    "name": "NotIn-Null.sql",
+    "category": "Misc",
+    "subcategory": ""
+  },
+  {
+    "path": "Misc/ParseStringExprVirgula.sql",
+    "name": "ParseStringExprVirgula.sql",
+    "category": "Misc",
+    "subcategory": ""
+  },
+  {
+    "path": "Misc/ProcurarTexto.sql",
+    "name": "ProcurarTexto.sql",
+    "category": "Misc",
+    "subcategory": ""
+  },
+  {
+    "path": "Misc/fn.GeraSenha2.sql",
+    "name": "fn.GeraSenha2.sql",
+    "category": "Misc",
+    "subcategory": ""
+  },
+  {
+    "path": "Misc/fn.GerarCPF.sql",
+    "name": "fn.GerarCPF.sql",
+    "category": "Misc",
+    "subcategory": ""
+  },
+  {
+    "path": "Misc/fn.ValidarCNPJ-Alfa.sql",
+    "name": "fn.ValidarCNPJ-Alfa.sql",
+    "category": "Misc",
+    "subcategory": ""
+  },
+  {
+    "path": "Misc/fn.fnDelimitar.sql",
+    "name": "fn.fnDelimitar.sql",
+    "category": "Misc",
+    "subcategory": ""
+  },
+  {
+    "path": "Misc/sp.ForceOledbWait.sql",
+    "name": "sp.ForceOledbWait.sql",
+    "category": "Misc",
+    "subcategory": ""
+  },
+  {
+    "path": "Misc/sp.GerarSenha.sql",
+    "name": "sp.GerarSenha.sql",
+    "category": "Misc",
+    "subcategory": ""
+  },
+  {
+    "path": "Misc/vw.GerarCNPJ-Alfa.sql",
+    "name": "vw.GerarCNPJ-Alfa.sql",
+    "category": "Misc",
+    "subcategory": ""
+  },
+  {
+    "path": "Misc/vw.GerarCNPJ.sql",
+    "name": "vw.GerarCNPJ.sql",
+    "category": "Misc",
+    "subcategory": ""
+  },
+  {
+    "path": "Misc/vw.GerarCPF.sql",
+    "name": "vw.GerarCPF.sql",
+    "category": "Misc",
+    "subcategory": ""
+  },
+  {
+    "path": "Modulos/DependencyChain.sql",
+    "name": "DependencyChain.sql",
+    "category": "Modulos",
+    "subcategory": ""
+  },
+  {
+    "path": "Modulos/Descriptografar-Procs/DecryptSelectProcs.sql",
+    "name": "DecryptSelectProcs.sql",
+    "category": "Modulos",
+    "subcategory": "Descriptografar-Procs"
+  },
+  {
+    "path": "Modulos/Descriptografar-Procs/fn.Rc4.sql",
+    "name": "fn.Rc4.sql",
+    "category": "Modulos",
+    "subcategory": "Descriptografar-Procs"
+  },
+  {
+    "path": "Modulos/ProcuraEmTodosModulos.sql",
+    "name": "ProcuraEmTodosModulos.sql",
+    "category": "Modulos",
+    "subcategory": ""
+  },
+  {
+    "path": "Modulos/sp.showcode.sql",
+    "name": "sp.showcode.sql",
+    "category": "Modulos",
+    "subcategory": ""
+  },
+  {
+    "path": "Modulos/sp_showcode/exemplos.sql",
+    "name": "exemplos.sql",
+    "category": "Modulos",
+    "subcategory": "sp_showcode"
+  },
+  {
+    "path": "PowerAlerts/ErrorInfo.sql",
+    "name": "ErrorInfo.sql",
+    "category": "PowerAlerts",
+    "subcategory": ""
+  },
+  {
+    "path": "Schemas/ChangeSchemaOwners.sql",
+    "name": "ChangeSchemaOwners.sql",
+    "category": "Schemas",
+    "subcategory": ""
+  },
+  {
+    "path": "SqlLibEmbeddings/IndexData2025.sql",
+    "name": "IndexData2025.sql",
+    "category": "SqlLibEmbeddings",
+    "subcategory": ""
+  },
+  {
+    "path": "SqlLibEmbeddings/SearchData2025.sql",
+    "name": "SearchData2025.sql",
+    "category": "SqlLibEmbeddings",
+    "subcategory": ""
+  },
+  {
+    "path": "SqlLibEmbeddings/tab.Scripts.sql",
+    "name": "tab.Scripts.sql",
+    "category": "SqlLibEmbeddings",
+    "subcategory": ""
+  },
+  {
+    "path": "Storage/Files/LogInfo2.sql",
+    "name": "LogInfo2.sql",
+    "category": "Storage",
+    "subcategory": "Files"
+  },
+  {
+    "path": "Tables/Colunas/ProcurarColunaPorNome.sql",
+    "name": "ProcurarColunaPorNome.sql",
+    "category": "Tables",
+    "subcategory": "Colunas"
+  },
+  {
+    "path": "Tables/TableSize2.sql",
+    "name": "TableSize2.sql",
+    "category": "Tables",
+    "subcategory": ""
+  },
+  {
+    "path": "apresentacoes/161008-SqlSat570-CorrupcaoDados/00-Roteiro.sql",
+    "name": "00-Roteiro.sql",
+    "category": "apresentacoes",
+    "subcategory": "161008-SqlSat570-CorrupcaoDados"
+  },
+  {
+    "path": "apresentacoes/161008-SqlSat570-CorrupcaoDados/05-TiposCorrupcao.sql",
+    "name": "05-TiposCorrupcao.sql",
+    "category": "apresentacoes",
+    "subcategory": "161008-SqlSat570-CorrupcaoDados"
+  },
+  {
+    "path": "apresentacoes/161008-SqlSat570-CorrupcaoDados/10-Cenario-RestorePagina.sql",
+    "name": "10-Cenario-RestorePagina.sql",
+    "category": "apresentacoes",
+    "subcategory": "161008-SqlSat570-CorrupcaoDados"
+  },
+  {
+    "path": "apresentacoes/161008-SqlSat570-CorrupcaoDados/20-Cenario-BackupTailLog.sql",
+    "name": "20-Cenario-BackupTailLog.sql",
+    "category": "apresentacoes",
+    "subcategory": "161008-SqlSat570-CorrupcaoDados"
+  },
+  {
+    "path": "apresentacoes/161008-SqlSat570-CorrupcaoDados/30-DeleteAcidental-SemBackup-RecSimple.sql",
+    "name": "30-DeleteAcidental-SemBackup-RecSimple.sql",
+    "category": "apresentacoes",
+    "subcategory": "161008-SqlSat570-CorrupcaoDados"
+  },
+  {
+    "path": "apresentacoes/161008-SqlSat570-CorrupcaoDados/31-RecoverDeletedDataProc.sql",
+    "name": "31-RecoverDeletedDataProc.sql",
+    "category": "apresentacoes",
+    "subcategory": "161008-SqlSat570-CorrupcaoDados"
+  },
+  {
+    "path": "apresentacoes/161008-SqlSat570-CorrupcaoDados/40-NonCluster.sql",
+    "name": "40-NonCluster.sql",
+    "category": "apresentacoes",
+    "subcategory": "161008-SqlSat570-CorrupcaoDados"
+  },
+  {
+    "path": "apresentacoes/161008-SqlSat570-CorrupcaoDados/41-Cenario-ClusterCorrompido-NonLeaf.sql",
+    "name": "41-Cenario-ClusterCorrompido-NonLeaf.sql",
+    "category": "apresentacoes",
+    "subcategory": "161008-SqlSat570-CorrupcaoDados"
+  },
+  {
+    "path": "apresentacoes/161008-SqlSat570-CorrupcaoDados/41-ClusterCorrompido-NonLeaf-FirstPage.sql",
+    "name": "41-ClusterCorrompido-NonLeaf-FirstPage.sql",
+    "category": "apresentacoes",
+    "subcategory": "161008-SqlSat570-CorrupcaoDados"
+  },
+  {
+    "path": "apresentacoes/161008-SqlSat570-CorrupcaoDados/50-ClusterCorrompido-Leaf.sql",
+    "name": "50-ClusterCorrompido-Leaf.sql",
+    "category": "apresentacoes",
+    "subcategory": "161008-SqlSat570-CorrupcaoDados"
+  },
+  {
+    "path": "apresentacoes/161008-SqlSat570-CorrupcaoDados/51-Snapshot.sql",
+    "name": "51-Snapshot.sql",
+    "category": "apresentacoes",
+    "subcategory": "161008-SqlSat570-CorrupcaoDados"
+  },
+  {
+    "path": "apresentacoes/161008-SqlSat570-CorrupcaoDados/52-Tentativas.sql",
+    "name": "52-Tentativas.sql",
+    "category": "apresentacoes",
+    "subcategory": "161008-SqlSat570-CorrupcaoDados"
+  },
+  {
+    "path": "apresentacoes/161008-SqlSat570-CorrupcaoDados/60-HeapCorruption-Cover.sql",
+    "name": "60-HeapCorruption-Cover.sql",
+    "category": "apresentacoes",
+    "subcategory": "161008-SqlSat570-CorrupcaoDados"
+  },
+  {
+    "path": "apresentacoes/161008-SqlSat570-CorrupcaoDados/CreateDbCorrupt.sql",
+    "name": "CreateDbCorrupt.sql",
+    "category": "apresentacoes",
+    "subcategory": "161008-SqlSat570-CorrupcaoDados"
+  },
+  {
+    "path": "apresentacoes/161008-SqlSat570-CorrupcaoDados/CreateRecoverProc.sql",
+    "name": "CreateRecoverProc.sql",
+    "category": "apresentacoes",
+    "subcategory": "161008-SqlSat570-CorrupcaoDados"
+  },
+  {
+    "path": "apresentacoes/161008-SqlSat570-CorrupcaoDados/DbccIndTable.sql",
+    "name": "DbccIndTable.sql",
+    "category": "apresentacoes",
+    "subcategory": "161008-SqlSat570-CorrupcaoDados"
+  },
+  {
+    "path": "apresentacoes/250604-PowerLive-Sql2025/0000-Roteiro.sql",
+    "name": "0000-Roteiro.sql",
+    "category": "apresentacoes",
+    "subcategory": "250604-PowerLive-Sql2025"
+  },
+  {
+    "path": "apresentacoes/250604-PowerLive-Sql2025/AI.sql",
+    "name": "AI.sql",
+    "category": "apresentacoes",
+    "subcategory": "250604-PowerLive-Sql2025"
+  },
+  {
+    "path": "apresentacoes/250604-PowerLive-Sql2025/AbortQueryHint.sql",
+    "name": "AbortQueryHint.sql",
+    "category": "apresentacoes",
+    "subcategory": "250604-PowerLive-Sql2025"
+  },
+  {
+    "path": "apresentacoes/250604-PowerLive-Sql2025/AlwaysOn-CreateSql22.sql",
+    "name": "AlwaysOn-CreateSql22.sql",
+    "category": "apresentacoes",
+    "subcategory": "250604-PowerLive-Sql2025"
+  },
+  {
+    "path": "apresentacoes/250604-PowerLive-Sql2025/AlwaysOn.sql",
+    "name": "AlwaysOn.sql",
+    "category": "apresentacoes",
+    "subcategory": "250604-PowerLive-Sql2025"
+  },
+  {
+    "path": "apresentacoes/250604-PowerLive-Sql2025/BackupNewCompression.sql",
+    "name": "BackupNewCompression.sql",
+    "category": "apresentacoes",
+    "subcategory": "250604-PowerLive-Sql2025"
+  },
+  {
+    "path": "apresentacoes/250604-PowerLive-Sql2025/ExternalHTTP.sql",
+    "name": "ExternalHTTP.sql",
+    "category": "apresentacoes",
+    "subcategory": "250604-PowerLive-Sql2025"
+  },
+  {
+    "path": "apresentacoes/250604-PowerLive-Sql2025/InMemoryRemoveFilegroup.sql",
+    "name": "InMemoryRemoveFilegroup.sql",
+    "category": "apresentacoes",
+    "subcategory": "250604-PowerLive-Sql2025"
+  },
+  {
+    "path": "apresentacoes/250604-PowerLive-Sql2025/Json.sql",
+    "name": "Json.sql",
+    "category": "apresentacoes",
+    "subcategory": "250604-PowerLive-Sql2025"
+  },
+  {
+    "path": "apresentacoes/250604-PowerLive-Sql2025/NewDmvs.sql",
+    "name": "NewDmvs.sql",
+    "category": "apresentacoes",
+    "subcategory": "250604-PowerLive-Sql2025"
+  },
+  {
+    "path": "apresentacoes/250604-PowerLive-Sql2025/Optimized-sp_executesql-alternativaquery.sql",
+    "name": "Optimized-sp_executesql-alternativaquery.sql",
+    "category": "apresentacoes",
+    "subcategory": "250604-PowerLive-Sql2025"
+  },
+  {
+    "path": "apresentacoes/250604-PowerLive-Sql2025/Optimized-sp_executesql.sql",
+    "name": "Optimized-sp_executesql.sql",
+    "category": "apresentacoes",
+    "subcategory": "250604-PowerLive-Sql2025"
+  },
+  {
+    "path": "apresentacoes/250604-PowerLive-Sql2025/Outros.sql",
+    "name": "Outros.sql",
+    "category": "apresentacoes",
+    "subcategory": "250604-PowerLive-Sql2025"
+  },
+  {
+    "path": "apresentacoes/250604-PowerLive-Sql2025/Regex.sql",
+    "name": "Regex.sql",
+    "category": "apresentacoes",
+    "subcategory": "250604-PowerLive-Sql2025"
+  },
+  {
+    "path": "apresentacoes/250604-PowerLive-Sql2025/TempdbResourceGovernor-QueryConsumo.sql",
+    "name": "TempdbResourceGovernor-QueryConsumo.sql",
+    "category": "apresentacoes",
+    "subcategory": "250604-PowerLive-Sql2025"
+  },
+  {
+    "path": "apresentacoes/250604-PowerLive-Sql2025/TempdbResourceGovernor.sql",
+    "name": "TempdbResourceGovernor.sql",
+    "category": "apresentacoes",
+    "subcategory": "250604-PowerLive-Sql2025"
+  },
+  {
+    "path": "apresentacoes/251127-PowerLive-AiSql25/0000-Roteiro.sql",
+    "name": "0000-Roteiro.sql",
+    "category": "apresentacoes",
+    "subcategory": "251127-PowerLive-AiSql25"
+  },
+  {
+    "path": "apresentacoes/251127-PowerLive-AiSql25/AI.sql",
+    "name": "AI.sql",
+    "category": "apresentacoes",
+    "subcategory": "251127-PowerLive-AiSql25"
+  },
+  {
+    "path": "apresentacoes/251127-PowerLive-AiSql25/Chunk.sql",
+    "name": "Chunk.sql",
+    "category": "apresentacoes",
+    "subcategory": "251127-PowerLive-AiSql25"
+  },
+  {
+    "path": "apresentacoes/251127-PowerLive-AiSql25/ExternalHTTP.sql",
+    "name": "ExternalHTTP.sql",
+    "category": "apresentacoes",
+    "subcategory": "251127-PowerLive-AiSql25"
+  },
+  {
+    "path": "apresentacoes/251127-PowerLive-AiSql25/OmniArtigos.sql",
+    "name": "OmniArtigos.sql",
+    "category": "apresentacoes",
+    "subcategory": "251127-PowerLive-AiSql25"
+  },
+  {
+    "path": "apresentacoes/251127-PowerLive-AiSql25/OmniTest.sql",
+    "name": "OmniTest.sql",
+    "category": "apresentacoes",
+    "subcategory": "251127-PowerLive-AiSql25"
+  }
+]
