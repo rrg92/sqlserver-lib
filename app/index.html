@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQL Server Lib – Scripts</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #1e1e2e;
+      color: #cdd6f4;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #181825;
+      border-bottom: 2px solid #313244;
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      color: #89b4fa;
+      flex: 1;
+    }
+
+    header .badge {
+      background: #313244;
+      color: #a6e3a1;
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .toolbar {
+      background: #181825;
+      padding: 0.75rem 2rem;
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      align-items: center;
+      border-bottom: 1px solid #313244;
+    }
+
+    .toolbar input[type="search"] {
+      background: #313244;
+      border: 1px solid #45475a;
+      border-radius: 6px;
+      color: #cdd6f4;
+      padding: 0.5rem 0.9rem;
+      font-size: 0.95rem;
+      width: 320px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .toolbar input[type="search"]:focus {
+      border-color: #89b4fa;
+    }
+
+    .toolbar select {
+      background: #313244;
+      border: 1px solid #45475a;
+      border-radius: 6px;
+      color: #cdd6f4;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.95rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .toolbar label {
+      font-size: 0.9rem;
+      color: #a6adc8;
+    }
+
+    main {
+      padding: 1.5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .stats {
+      font-size: 0.88rem;
+      color: #6c7086;
+      margin-bottom: 1rem;
+    }
+
+    /* Category sections */
+    .category-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      padding: 0.6rem 0.8rem;
+      background: #24273a;
+      border: 1px solid #313244;
+      border-radius: 8px 8px 0 0;
+      user-select: none;
+      transition: background 0.15s;
+    }
+
+    .category-header:hover { background: #2a2d3e; }
+
+    .category-header h2 {
+      font-size: 1rem;
+      color: #89dceb;
+      flex: 1;
+    }
+
+    .category-header .count {
+      background: #45475a;
+      border-radius: 999px;
+      padding: 0.1rem 0.55rem;
+      font-size: 0.78rem;
+      color: #cba6f7;
+    }
+
+    .category-header .arrow {
+      font-size: 0.75rem;
+      color: #6c7086;
+      transition: transform 0.2s;
+    }
+
+    .category-header.collapsed .arrow { transform: rotate(-90deg); }
+
+    .script-list {
+      border: 1px solid #313244;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      overflow: hidden;
+    }
+
+    .category-section.collapsed .script-list { display: none; }
+
+    .script-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.55rem 1rem;
+      border-bottom: 1px solid #1e1e2e;
+      background: #181825;
+      transition: background 0.1s;
+    }
+
+    .script-item:last-child { border-bottom: none; }
+    .script-item:hover { background: #24273a; }
+
+    .script-item .icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .script-item .name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #f38ba8;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .script-item .path {
+      font-size: 0.78rem;
+      color: #585b70;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      max-width: 500px;
+    }
+
+    .script-item a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .script-item a:hover .name { color: #fab387; text-decoration: underline; }
+
+    .no-results {
+      text-align: center;
+      color: #6c7086;
+      padding: 3rem;
+      font-size: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: #45475a;
+      font-size: 0.8rem;
+      border-top: 1px solid #313244;
+      margin-top: 2rem;
+    }
+
+    footer a { color: #89b4fa; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      header { padding: 1rem; }
+      main { padding: 1rem; }
+      .toolbar { padding: 0.75rem 1rem; }
+      .toolbar input[type="search"] { width: 100%; }
+      .script-item .path { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🗄️ SQL Server Lib – Scripts</h1>
+  <span class="badge" id="totalBadge">carregando…</span>
+</header>
+
+<div class="toolbar">
+  <label for="search">🔍</label>
+  <input type="search" id="search" placeholder="Pesquisar scripts…" autocomplete="off" />
+  <select id="categoryFilter">
+    <option value="">Todas as categorias</option>
+  </select>
+</div>
+
+<main>
+  <p class="stats" id="stats"></p>
+  <div id="content"></div>
+</main>
+
+<footer>
+  <a href="https://github.com/rrg92/sqlserver-lib" target="_blank">rrg92/sqlserver-lib</a>
+  &mdash; Scripts gerados a partir do repositório
+</footer>
+
+<script>
+(async () => {
+  const REPO_BASE = 'https://github.com/rrg92/sqlserver-lib/blob/main/';
+
+  let scripts = [];
+
+  try {
+    const res = await fetch('scripts.json');
+    scripts = await res.json();
+  } catch (e) {
+    document.getElementById('content').innerHTML =
+      '<p class="no-results">Erro ao carregar scripts.json. Verifique se o arquivo existe e está acessível.</p>';
+    return;
+  }
+
+  // Populate category filter
+  const categories = [...new Set(scripts.map(s => s.category))].sort();
+  const filterEl = document.getElementById('categoryFilter');
+  categories.forEach(cat => {
+    const opt = document.createElement('option');
+    opt.value = cat;
+    opt.textContent = cat;
+    filterEl.appendChild(opt);
+  });
+
+  document.getElementById('totalBadge').textContent = `${scripts.length} scripts`;
+
+  function render() {
+    const query = document.getElementById('search').value.trim().toLowerCase();
+    const catFilter = filterEl.value;
+
+    const filtered = scripts.filter(s => {
+      const matchCat = !catFilter || s.category === catFilter;
+      const matchQ = !query ||
+        s.name.toLowerCase().includes(query) ||
+        s.path.toLowerCase().includes(query);
+      return matchCat && matchQ;
+    });
+
+    document.getElementById('stats').textContent =
+      `Mostrando ${filtered.length} de ${scripts.length} scripts`;
+
+    if (filtered.length === 0) {
+      document.getElementById('content').innerHTML =
+        '<div class="no-results">Nenhum script encontrado.</div>';
+      return;
+    }
+
+    // Group by category
+    const grouped = {};
+    filtered.forEach(s => {
+      if (!grouped[s.category]) grouped[s.category] = [];
+      grouped[s.category].push(s);
+    });
+
+    const html = Object.keys(grouped).sort().map(cat => {
+      const items = grouped[cat];
+      const rows = items.map(s => {
+        const url = REPO_BASE + s.path.split('/').map(encodeURIComponent).join('/');
+        const subPath = s.path.substring(s.category.length + 1);
+        return `
+          <div class="script-item">
+            <span class="icon">📄</span>
+            <a href="${url}" target="_blank" title="${s.path}">
+              <span class="name">${escHtml(s.name)}</span>
+            </a>
+            <span class="path">${escHtml(subPath)}</span>
+          </div>`;
+      }).join('');
+
+      return `
+        <div class="category-section" data-cat="${escHtml(cat)}">
+          <div class="category-header" onclick="toggleSection(this)">
+            <h2>${escHtml(cat)}</h2>
+            <span class="count">${items.length}</span>
+            <span class="arrow">▼</span>
+          </div>
+          <div class="script-list">${rows}</div>
+        </div>`;
+    }).join('');
+
+    document.getElementById('content').innerHTML = html;
+  }
+
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  window.toggleSection = function(header) {
+    const section = header.closest('.category-section');
+    section.classList.toggle('collapsed');
+    header.classList.toggle('collapsed');
+  };
+
+  document.getElementById('search').addEventListener('input', render);
+  filterEl.addEventListener('change', render);
+
+  render();
+})();
+</script>
+</body>
+</html>
